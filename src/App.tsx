@@ -133,9 +133,9 @@ function App() {
             className='margin-top-05 small-font'
             style={{ color: 'var(--gray-600)' }}
           >
-            Source: GDP data from the IMF WEO Database (April 2023), and on CO2
-            emissions from the Global Carbon Budget 2022 and EDGAR (JRC and
-            IEA).
+            Source: Projections based on GDP data from the IMF WEO Database
+            (April 2023), and on CO2 emissions from the Global Carbon Budget
+            2022 and EDGAR (JRC and IEA).
           </div>
         </div>
         <div
@@ -185,8 +185,8 @@ function App() {
             className='margin-top-05 small-font'
             style={{ color: 'var(--gray-600)' }}
           >
-            Source: Based on binned distributions ($0.10-bins, 2017 PPP)
-            reconstructed from the World Bank&apos;s Poverty and Inequality
+            Source: Projections based on binned distributions ($0.10-bins, 2017
+            PPP) reconstructed from the World Bank&apos;s Poverty and Inequality
             Platform through the pip: Stata Module.
           </div>
         </div>
