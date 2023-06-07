@@ -194,14 +194,14 @@ export function SlopeGraphPoverty(props: Props) {
           y2={0}
           x1={0}
           x2={0}
-          style={{ stroke: 'var(--gray-600)', strokeWidth: 2 }}
+          style={{ stroke: 'var(--gray-400)', strokeWidth: 2 }}
         />
         <line
           y1={graphHeight}
           y2={0}
           x1={graphWidth}
           x2={graphWidth}
-          style={{ stroke: 'var(--gray-600)', strokeWidth: 2 }}
+          style={{ stroke: 'var(--gray-400)', strokeWidth: 2 }}
         />
         <line
           x1={0}

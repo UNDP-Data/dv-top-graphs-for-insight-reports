@@ -126,14 +126,14 @@ export function SlopeGraph(props: Props) {
           y2={0}
           x1={0}
           x2={0}
-          style={{ stroke: 'var(--gray-600)', strokeWidth: 2 }}
+          style={{ stroke: 'var(--gray-400)', strokeWidth: 2 }}
         />
         <line
           y1={graphHeight}
           y2={0}
           x1={graphWidth}
           x2={graphWidth}
-          style={{ stroke: 'var(--gray-600)', strokeWidth: 2 }}
+          style={{ stroke: 'var(--gray-400)', strokeWidth: 2 }}
         />
         <line
           x1={0}
@@ -168,14 +168,13 @@ export function SlopeGraph(props: Props) {
         <text
           x={0}
           y={y(data[0]['2023'])}
-          dx={-9}
-          dy={7}
+          dy={data[0]['2023'] < data[1]['2023'] ? 17 : -11}
           style={{
             fontFamily: 'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
             fill: UNDPColorModule.graphMainColor,
             fontWeight: 'bold',
             fontSize: '0.825rem',
-            textAnchor: 'end',
+            textAnchor: 'middle',
           }}
         >
           {data[0]['2023']}
@@ -191,14 +190,13 @@ export function SlopeGraph(props: Props) {
         <text
           x={graphWidth}
           y={y(data[0]['2025'])}
-          dx={9}
-          dy={7}
+          dy={data[0]['2025'] < data[1]['2025'] ? 17 : -11}
           style={{
             fontFamily: 'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
             fill: UNDPColorModule.graphMainColor,
             fontWeight: 'bold',
             fontSize: '0.825rem',
-            textAnchor: 'start',
+            textAnchor: 'middle',
           }}
         >
           {data[0]['2025']}
@@ -214,14 +212,13 @@ export function SlopeGraph(props: Props) {
         <text
           x={0}
           y={y(data[1]['2023'])}
-          dx={-9}
-          dy={3}
+          dy={data[0]['2023'] > data[1]['2023'] ? 17 : -11}
           style={{
             fontFamily: 'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
             fill: colors[1],
             fontWeight: 'bold',
             fontSize: '0.825rem',
-            textAnchor: 'end',
+            textAnchor: 'middle',
           }}
         >
           {data[1]['2023']}
@@ -237,14 +234,13 @@ export function SlopeGraph(props: Props) {
         <text
           x={graphWidth}
           y={y(data[1]['2025'])}
-          dx={9}
-          dy={3}
+          dy={data[0]['2025'] > data[1]['2025'] ? 17 : -11}
           style={{
             fontFamily: 'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
             fill: colors[1],
             fontWeight: 'bold',
             fontSize: '0.825rem',
-            textAnchor: 'start',
+            textAnchor: 'middle',
           }}
         >
           {data[1]['2025']}
