@@ -65,18 +65,18 @@ export function SlopeGraph(props: Props) {
           fontSize: '0.825rem',
         }}
       >
-        From Fossil Fuel
+        From fossil fuels
       </text>
       <circle
-        cx={135}
-        cy={15}
+        cx={5}
+        cy={40}
         r={5}
         style={{ fill: colors[1] }}
         shapeRendering='geometricPrecision'
       />
       <text
-        x={145}
-        y={23}
+        x={15}
+        y={48}
         dx={0}
         dy={-3}
         style={{
@@ -86,7 +86,7 @@ export function SlopeGraph(props: Props) {
           fontSize: '0.825rem',
         }}
       >
-        From Fossil Fuel & Land Use
+        From fossil fuels & land-use change
       </text>
       <g transform={`translate(${margin.left},${margin.top})`}>
         <g>
