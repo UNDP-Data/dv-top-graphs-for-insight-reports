@@ -97,7 +97,7 @@ export function LineChartGraph(props: Props) {
     .curve(curveMonotoneX);
   return (
     <svg
-      width='660px'
+      width='730px'
       style={{ alignItems: 'flex-end' }}
       viewBox={`0 0 ${svgWidth} ${svgHeight}`}
     >
@@ -172,7 +172,7 @@ export function LineChartGraph(props: Props) {
           fontSize: '0.825rem',
         }}
       >
-        World GDP Proj. (current)
+        World GDP Projection (current)
       </text>
       <g transform={`translate(${margin.left},${margin.top})`}>
         <g>

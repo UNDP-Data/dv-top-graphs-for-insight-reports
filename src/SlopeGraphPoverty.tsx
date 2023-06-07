@@ -39,7 +39,7 @@ export function SlopeGraphPoverty(props: Props) {
     .nice();
   return (
     <svg
-      width='300px'
+      width='325px'
       style={{ alignItems: 'flex-end' }}
       viewBox={`0 0 ${svgWidth} ${svgHeight}`}
     >

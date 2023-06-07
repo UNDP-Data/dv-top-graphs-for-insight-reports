@@ -61,25 +61,34 @@ function App() {
         }}
         ref={graph1}
       >
-        <h4
+        <h5
           className='undp-typography'
           style={{
             width: '100%',
             textAlign: 'center',
             color: 'var(--blue-600)',
             fontFamily: 'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+            textTransform: 'uppercase',
+            fontWeight: 'bold',
           }}
         >
           Growth Pathway
-        </h4>
+        </h5>
         <LineChartGraph
           data2023={GDP2023[GDP2023.findIndex(d => d.iso3 === selectedCountry)]}
           data2019={GDP2019[GDP2019.findIndex(d => d.iso3 === selectedCountry)]}
           dataWorld={WorldGDPData}
-          svgWidth={660}
+          svgWidth={730}
           svgHeight={480}
           strokeWidth={3}
         />
+        <div
+          className='margin-top-05 small-font'
+          style={{ color: 'var(--gray-600)' }}
+        >
+          Source: IMF World Economic Outlook (WEO) (April 2023 and October
+          2019).
+        </div>
       </div>
       <div className='flex-div flex-space-between'>
         <div
@@ -89,7 +98,7 @@ function App() {
           }}
           ref={graph2}
         >
-          <h4
+          <h5
             className='undp-typography'
             style={{
               width: '100%',
@@ -97,10 +106,12 @@ function App() {
               color: 'var(--blue-600)',
               fontFamily:
                 'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+              textTransform: 'uppercase',
+              fontWeight: 'bold',
             }}
           >
             Carbon Intensity
-          </h4>
+          </h5>
           <SlopeGraph
             data={[
               CarbonIntensityFromFossilFuel[
@@ -114,10 +125,18 @@ function App() {
                 )
               ],
             ]}
-            svgWidth={300}
+            svgWidth={325}
             svgHeight={300}
             colors={[UNDPColorModule.graphMainColor, 'var(--blue-300)']}
           />
+          <div
+            className='margin-top-05 small-font'
+            style={{ color: 'var(--gray-600)' }}
+          >
+            Source: GDP data from the IMF WEO Database (April 2023), and on CO2
+            emissions from the Global Carbon Budget 2022 and EDGAR (JRC and
+            IEA).
+          </div>
         </div>
         <div
           style={{
@@ -126,7 +145,7 @@ function App() {
           }}
           ref={graph3}
         >
-          <h4
+          <h5
             className='undp-typography'
             style={{
               width: '100%',
@@ -134,10 +153,12 @@ function App() {
               color: 'var(--blue-600)',
               fontFamily:
                 'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+              textTransform: 'uppercase',
+              fontWeight: 'bold',
             }}
           >
             Poverty
-          </h4>
+          </h5>
           <SlopeGraphPoverty
             data={[
               Poverty2_15[
@@ -151,7 +172,7 @@ function App() {
               ],
               Poverty14[Poverty14.findIndex(d => d.iso3 === selectedCountry)],
             ]}
-            svgWidth={300}
+            svgWidth={325}
             svgHeight={300}
             colors={[
               UNDPColorModule.categoricalColors.colors[3],
@@ -160,6 +181,14 @@ function App() {
               UNDPColorModule.categoricalColors.colors[0],
             ]}
           />
+          <div
+            className='margin-top-05 small-font'
+            style={{ color: 'var(--gray-600)' }}
+          >
+            Source: Based on binned distributions ($0.10-bins, 2017 PPP)
+            reconstructed from the World Bank&apos;s Poverty and Inequality
+            Platform through the pip: Stata Module.
+          </div>
         </div>
       </div>
       <button

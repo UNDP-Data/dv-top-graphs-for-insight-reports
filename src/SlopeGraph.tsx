@@ -35,7 +35,7 @@ export function SlopeGraph(props: Props) {
     .nice();
   return (
     <svg
-      width='300px'
+      width='325px'
       style={{ alignItems: 'flex-end' }}
       viewBox={`0 0 ${svgWidth} ${svgHeight}`}
     >
@@ -47,14 +47,14 @@ export function SlopeGraph(props: Props) {
         fill={UNDPColorModule.graphBackgroundColor}
       />
       <circle
-        cx={10}
+        cx={5}
         cy={15}
         r={5}
         style={{ fill: colors[0] }}
         shapeRendering='geometricPrecision'
       />
       <text
-        x={20}
+        x={15}
         y={23}
         dx={0}
         dy={-3}
@@ -65,17 +65,17 @@ export function SlopeGraph(props: Props) {
           fontSize: '0.825rem',
         }}
       >
-        Fossil Fuel
+        From Fossil Fuel
       </text>
       <circle
-        cx={150}
+        cx={135}
         cy={15}
         r={5}
         style={{ fill: colors[1] }}
         shapeRendering='geometricPrecision'
       />
       <text
-        x={160}
+        x={145}
         y={23}
         dx={0}
         dy={-3}
@@ -86,7 +86,7 @@ export function SlopeGraph(props: Props) {
           fontSize: '0.825rem',
         }}
       >
-        Fossil Fuel & Land Use
+        From Fossil Fuel & Land Use
       </text>
       <g transform={`translate(${margin.left},${margin.top})`}>
         <g>
