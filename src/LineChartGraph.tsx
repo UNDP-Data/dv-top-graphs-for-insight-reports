@@ -128,10 +128,10 @@ export function LineChartGraph(props: Props) {
           fontSize: '0.825rem',
         }}
       >
-        GDP Projection (current)
+        GDP Projection (April 2023)
       </text>
       <rect
-        x={200}
+        x={215}
         y={12}
         width={20}
         height={6}
@@ -139,7 +139,7 @@ export function LineChartGraph(props: Props) {
         shapeRendering='geometricPrecision'
       />
       <text
-        x={225}
+        x={240}
         y={23}
         dx={0}
         dy={-3}
@@ -150,7 +150,7 @@ export function LineChartGraph(props: Props) {
           fontSize: '0.825rem',
         }}
       >
-        GDP Projection (counterfactual)
+        GDP Projection (October 2019)
       </text>
       <rect
         x={450}
@@ -172,7 +172,7 @@ export function LineChartGraph(props: Props) {
           fontSize: '0.825rem',
         }}
       >
-        World GDP Projection (current)
+        World GDP Projection (April 2023)
       </text>
       <g transform={`translate(${margin.left},${margin.top})`}>
         <g>

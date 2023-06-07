@@ -18,6 +18,7 @@ function App() {
   const graph1 = useRef<HTMLDivElement>(null);
   const graph2 = useRef<HTMLDivElement>(null);
   const graph3 = useRef<HTMLDivElement>(null);
+  const graphCombined = useRef<HTMLDivElement>(null);
   const WorldGDPData = {
     '2019': 0.028,
     '2020': -0.029,
@@ -54,49 +55,13 @@ function App() {
           </Select.Option>
         ))}
       </Select>
-      <div
-        style={{
-          padding: '2rem',
-          backgroundColor: UNDPColorModule.graphBackgroundColor,
-        }}
-        ref={graph1}
-      >
-        <h5
-          className='undp-typography'
-          style={{
-            width: '100%',
-            textAlign: 'center',
-            color: 'var(--blue-600)',
-            fontFamily: 'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-            textTransform: 'uppercase',
-            fontWeight: 'bold',
-          }}
-        >
-          Growth Pathway
-        </h5>
-        <LineChartGraph
-          data2023={GDP2023[GDP2023.findIndex(d => d.iso3 === selectedCountry)]}
-          data2019={GDP2019[GDP2019.findIndex(d => d.iso3 === selectedCountry)]}
-          dataWorld={WorldGDPData}
-          svgWidth={730}
-          svgHeight={480}
-          strokeWidth={3}
-        />
-        <div
-          className='margin-top-05 small-font'
-          style={{ color: 'var(--gray-600)' }}
-        >
-          Source: IMF World Economic Outlook (WEO) (April 2023 and October
-          2019).
-        </div>
-      </div>
-      <div className='flex-div flex-space-between'>
+      <div ref={graphCombined}>
         <div
           style={{
             padding: '2rem',
             backgroundColor: UNDPColorModule.graphBackgroundColor,
           }}
-          ref={graph2}
+          ref={graph1}
         >
           <h5
             className='undp-typography'
@@ -110,84 +75,157 @@ function App() {
               fontWeight: 'bold',
             }}
           >
-            Carbon Intensity
+            Growth Pathway
           </h5>
-          <SlopeGraph
-            data={[
-              CarbonIntensityFromFossilFuel[
-                CarbonIntensityFromFossilFuel.findIndex(
-                  d => d.iso3 === selectedCountry,
-                )
-              ],
-              CarbonIntensityFromFossilFuelAndLandUse[
-                CarbonIntensityFromFossilFuelAndLandUse.findIndex(
-                  d => d.iso3 === selectedCountry,
-                )
-              ],
-            ]}
-            svgWidth={325}
-            svgHeight={300}
-            colors={[UNDPColorModule.graphMainColor, 'var(--blue-300)']}
+          <LineChartGraph
+            data2023={
+              GDP2023[GDP2023.findIndex(d => d.iso3 === selectedCountry)]
+            }
+            data2019={
+              GDP2019[GDP2019.findIndex(d => d.iso3 === selectedCountry)]
+            }
+            dataWorld={WorldGDPData}
+            svgWidth={730}
+            svgHeight={480}
+            strokeWidth={3}
           />
           <div
             className='margin-top-05 small-font'
-            style={{ color: 'var(--gray-600)' }}
+            style={{
+              color: 'var(--gray-600)',
+              fontFamily:
+                'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+            }}
           >
-            Source: Projections based on GDP data from the IMF WEO Database
-            (April 2023), and on CO2 emissions from the Global Carbon Budget
-            2022 and EDGAR (JRC and IEA).
+            Source: IMF World Economic Outlook (WEO) (April 2023 and October
+            2019).
           </div>
         </div>
-        <div
-          style={{
-            padding: '2rem',
-            backgroundColor: UNDPColorModule.graphBackgroundColor,
-          }}
-          ref={graph3}
-        >
-          <h5
-            className='undp-typography'
-            style={{
-              width: '100%',
-              textAlign: 'center',
-              color: 'var(--blue-600)',
-              fontFamily:
-                'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-              textTransform: 'uppercase',
-              fontWeight: 'bold',
-            }}
-          >
-            Poverty
-          </h5>
-          <SlopeGraphPoverty
-            data={[
-              Poverty2_15[
-                Poverty2_15.findIndex(d => d.iso3 === selectedCountry)
-              ],
-              Poverty3_65[
-                Poverty3_65.findIndex(d => d.iso3 === selectedCountry)
-              ],
-              Poverty6_85[
-                Poverty6_85.findIndex(d => d.iso3 === selectedCountry)
-              ],
-              Poverty14[Poverty14.findIndex(d => d.iso3 === selectedCountry)],
-            ]}
-            svgWidth={325}
-            svgHeight={300}
-            colors={[
-              UNDPColorModule.categoricalColors.colors[3],
-              UNDPColorModule.categoricalColors.colors[2],
-              UNDPColorModule.categoricalColors.colors[1],
-              UNDPColorModule.categoricalColors.colors[0],
-            ]}
-          />
+        <div className='flex-div flex-space-between margin-top-05'>
           <div
-            className='margin-top-05 small-font'
-            style={{ color: 'var(--gray-600)' }}
+            style={{
+              padding: '2rem',
+              backgroundColor: UNDPColorModule.graphBackgroundColor,
+            }}
+            ref={graph2}
           >
-            Source: Projections based on binned distributions ($0.10-bins, 2017
-            PPP) reconstructed from the World Bank&apos;s Poverty and Inequality
-            Platform through the pip: Stata Module.
+            <h5
+              className='undp-typography'
+              style={{
+                width: '100%',
+                textAlign: 'center',
+                color: 'var(--blue-600)',
+                fontFamily:
+                  'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                textTransform: 'uppercase',
+                fontWeight: 'bold',
+              }}
+            >
+              Carbon Intensity
+            </h5>
+            <h6
+              className='undp-typography'
+              style={{
+                fontFamily:
+                  'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+              }}
+            >
+              CO2 emissions intensity of GDP (tCO2 per PPP $1,000)
+            </h6>
+            <SlopeGraph
+              data={[
+                CarbonIntensityFromFossilFuel[
+                  CarbonIntensityFromFossilFuel.findIndex(
+                    d => d.iso3 === selectedCountry,
+                  )
+                ],
+                CarbonIntensityFromFossilFuelAndLandUse[
+                  CarbonIntensityFromFossilFuelAndLandUse.findIndex(
+                    d => d.iso3 === selectedCountry,
+                  )
+                ],
+              ]}
+              svgWidth={325}
+              svgHeight={300}
+              colors={[UNDPColorModule.graphMainColor, 'var(--blue-300)']}
+            />
+            <div
+              className='margin-top-05 small-font'
+              style={{
+                color: 'var(--gray-600)',
+                fontFamily:
+                  'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+              }}
+            >
+              Source: Projections based on GDP data from the IMF WEO Database
+              (April 2023), and on CO2 emissions from the Global Carbon Budget
+              2022 and EDGAR (JRC and IEA).
+            </div>
+          </div>
+          <div
+            style={{
+              padding: '2rem',
+              backgroundColor: UNDPColorModule.graphBackgroundColor,
+            }}
+            ref={graph3}
+          >
+            <h5
+              className='undp-typography'
+              style={{
+                width: '100%',
+                textAlign: 'center',
+                color: 'var(--blue-600)',
+                fontFamily:
+                  'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                textTransform: 'uppercase',
+                fontWeight: 'bold',
+              }}
+            >
+              Poverty
+            </h5>
+            <h6
+              className='undp-typography'
+              style={{
+                fontFamily:
+                  'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+              }}
+            >
+              Percentage of the population under each threshold (PPP$ a day)
+            </h6>
+            <SlopeGraphPoverty
+              data={[
+                Poverty2_15[
+                  Poverty2_15.findIndex(d => d.iso3 === selectedCountry)
+                ],
+                Poverty3_65[
+                  Poverty3_65.findIndex(d => d.iso3 === selectedCountry)
+                ],
+                Poverty6_85[
+                  Poverty6_85.findIndex(d => d.iso3 === selectedCountry)
+                ],
+                Poverty14[Poverty14.findIndex(d => d.iso3 === selectedCountry)],
+              ]}
+              svgWidth={325}
+              svgHeight={300}
+              colors={[
+                UNDPColorModule.categoricalColors.colors[3],
+                UNDPColorModule.categoricalColors.colors[2],
+                UNDPColorModule.categoricalColors.colors[1],
+                UNDPColorModule.categoricalColors.colors[0],
+              ]}
+            />
+            <div
+              className='margin-top-05 small-font'
+              style={{
+                color: 'var(--gray-600)',
+                fontFamily:
+                  'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+              }}
+            >
+              Source: Projections based on binned distributions ($0.10-bins,
+              2017 PPP) reconstructed from the World Bank&apos;s Poverty and
+              Inequality Platform through the pip: Stata Module.
+            </div>
           </div>
         </div>
       </div>
@@ -204,6 +242,9 @@ function App() {
           }
           if (graph3.current) {
             DownloadImage(graph3.current, 'Poverty');
+          }
+          if (graphCombined.current) {
+            DownloadImage(graphCombined.current, 'Combined Graphs');
           }
         }}
       >
