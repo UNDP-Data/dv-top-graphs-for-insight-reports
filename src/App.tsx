@@ -123,15 +123,16 @@ function App() {
             >
               Carbon Intensity
             </h5>
-            <h6
+            <p
               className='undp-typography'
               style={{
+                fontSize: '1rem',
                 fontFamily:
                   'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
               }}
             >
               CO2 emissions intensity of GDP (tCO2 per PPP $1,000)
-            </h6>
+            </p>
             <SlopeGraph
               data={[
                 CarbonIntensityFromFossilFuel[
@@ -183,15 +184,16 @@ function App() {
             >
               Poverty
             </h5>
-            <h6
+            <p
               className='undp-typography'
               style={{
+                fontSize: '1rem',
                 fontFamily:
                   'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
               }}
             >
               Percentage of the population under each threshold (PPP$ a day)
-            </h6>
+            </p>
             <SlopeGraphPoverty
               data={[
                 Poverty2_15[
