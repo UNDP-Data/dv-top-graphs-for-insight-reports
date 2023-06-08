@@ -343,7 +343,7 @@ export function BarWithChange(props: Props) {
               fontWeight: 'bold',
             }}
           >
-            {data[1]['2025'] > data[1]['2023'] ? '-' : ''}
+            {data[1]['2025'] < data[1]['2023'] ? '-' : ''}
             {(Math.abs(data[1]['2025'] - data[1]['2023']) * 100) /
               Math.abs(data[1]['2023']) <
             10
