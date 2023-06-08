@@ -107,66 +107,6 @@ function App() {
               padding: '2rem',
               backgroundColor: UNDPColorModule.graphBackgroundColor,
             }}
-            ref={graph2}
-          >
-            <h5
-              className='undp-typography'
-              style={{
-                width: '100%',
-                textAlign: 'center',
-                color: 'var(--blue-600)',
-                fontFamily:
-                  'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-                textTransform: 'uppercase',
-                fontWeight: 'bold',
-              }}
-            >
-              Planet
-            </h5>
-            <p
-              className='undp-typography'
-              style={{
-                fontSize: '1rem',
-                fontFamily:
-                  'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-              }}
-            >
-              CO2 emissions intensity of GDP (tCO2 per PPP $1,000)
-            </p>
-            <BarWithChange
-              data={[
-                CarbonIntensityFromFossilFuel[
-                  CarbonIntensityFromFossilFuel.findIndex(
-                    d => d.iso3 === selectedCountry,
-                  )
-                ],
-                CarbonIntensityFromFossilFuelAndLandUse[
-                  CarbonIntensityFromFossilFuelAndLandUse.findIndex(
-                    d => d.iso3 === selectedCountry,
-                  )
-                ],
-              ]}
-              svgWidth={325}
-              svgHeight={300}
-            />
-            <div
-              className='margin-top-05 small-font'
-              style={{
-                color: 'var(--gray-600)',
-                fontFamily:
-                  'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-              }}
-            >
-              Source: Projections based on GDP data from the IMF WEO Database
-              (April 2023), and on CO2 emissions from the Global Carbon Budget
-              2022 and EDGAR (JRC and IEA).
-            </div>
-          </div>
-          <div
-            style={{
-              padding: '2rem',
-              backgroundColor: UNDPColorModule.graphBackgroundColor,
-            }}
             ref={graph3}
           >
             <h5
@@ -226,6 +166,66 @@ function App() {
               Source: Projections based on binned distributions ($0.10-bins,
               2017 PPP) reconstructed from the World Bank&apos;s Poverty and
               Inequality Platform through the pip: Stata Module.
+            </div>
+          </div>
+          <div
+            style={{
+              padding: '2rem',
+              backgroundColor: UNDPColorModule.graphBackgroundColor,
+            }}
+            ref={graph2}
+          >
+            <h5
+              className='undp-typography'
+              style={{
+                width: '100%',
+                textAlign: 'center',
+                color: 'var(--blue-600)',
+                fontFamily:
+                  'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                textTransform: 'uppercase',
+                fontWeight: 'bold',
+              }}
+            >
+              Planet
+            </h5>
+            <p
+              className='undp-typography'
+              style={{
+                fontSize: '1rem',
+                fontFamily:
+                  'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+              }}
+            >
+              CO2 emissions intensity of GDP (tCO2 per PPP $1,000)
+            </p>
+            <BarWithChange
+              data={[
+                CarbonIntensityFromFossilFuel[
+                  CarbonIntensityFromFossilFuel.findIndex(
+                    d => d.iso3 === selectedCountry,
+                  )
+                ],
+                CarbonIntensityFromFossilFuelAndLandUse[
+                  CarbonIntensityFromFossilFuelAndLandUse.findIndex(
+                    d => d.iso3 === selectedCountry,
+                  )
+                ],
+              ]}
+              svgWidth={325}
+              svgHeight={300}
+            />
+            <div
+              className='margin-top-05 small-font'
+              style={{
+                color: 'var(--gray-600)',
+                fontFamily:
+                  'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+              }}
+            >
+              Source: Projections based on GDP data from the IMF WEO Database
+              (April 2023), and on CO2 emissions from the Global Carbon Budget
+              2022 and EDGAR (JRC and IEA).
             </div>
           </div>
         </div>
