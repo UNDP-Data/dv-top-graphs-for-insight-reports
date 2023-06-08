@@ -2,7 +2,7 @@ import UNDPColorModule from 'undp-viz-colors';
 import { Select } from 'antd';
 import { useRef, useState } from 'react';
 import { LineChartGraph } from './LineChartGraph';
-import { SlopeGraph } from './SlopeGraph';
+import { BarWithChange } from './BarWithChange';
 import { SlopeGraphPoverty } from './SlopeGraphPoverty';
 import GDP2023 from './data/GDP-2023.json';
 import GDP2019 from './data/GDP-2019.json';
@@ -75,7 +75,7 @@ function App() {
               fontWeight: 'bold',
             }}
           >
-            Growth Pathway
+            GDP
           </h5>
           <LineChartGraph
             data2023={
@@ -121,7 +121,7 @@ function App() {
                 fontWeight: 'bold',
               }}
             >
-              Carbon Intensity
+              Planet
             </h5>
             <p
               className='undp-typography'
@@ -133,7 +133,7 @@ function App() {
             >
               CO2 emissions intensity of GDP (tCO2 per PPP $1,000)
             </p>
-            <SlopeGraph
+            <BarWithChange
               data={[
                 CarbonIntensityFromFossilFuel[
                   CarbonIntensityFromFossilFuel.findIndex(
@@ -148,7 +148,6 @@ function App() {
               ]}
               svgWidth={325}
               svgHeight={300}
-              colors={[UNDPColorModule.graphMainColor, 'var(--blue-300)']}
             />
             <div
               className='margin-top-05 small-font'
@@ -182,7 +181,7 @@ function App() {
                 fontWeight: 'bold',
               }}
             >
-              Poverty
+              People
             </h5>
             <p
               className='undp-typography'
