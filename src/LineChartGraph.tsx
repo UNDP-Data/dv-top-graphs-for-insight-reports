@@ -68,15 +68,45 @@ export function LineChartGraph(props: Props) {
     year: parseInt(d, 10),
     param: dataWorld[d] === '' ? undefined : dataWorld[d] * 100,
   }));
-  const minParam: number = minBy(dataFormatted, d => d.param)?.param
+  const countryMinParam: number = minBy(dataFormatted, d => d.param)?.param
     ? (minBy(dataFormatted, d => d.param)?.param as number) > 0
       ? 0
       : (minBy(dataFormatted, d => d.param)?.param as number)
     : 0;
-  const maxParam: number = maxBy(dataFormatted, d => d.param)?.param
+  const countryMaxParam: number = maxBy(dataFormatted, d => d.param)?.param
     ? (maxBy(dataFormatted, d => d.param)?.param as number)
     : 0;
+  const countryMinParam2019: number = minBy(dataFormatted2019, d => d.param)
+    ?.param
+    ? (minBy(dataFormatted2019, d => d.param)?.param as number) > 0
+      ? 0
+      : (minBy(dataFormatted2019, d => d.param)?.param as number)
+    : 0;
+  const countryMaxParam2019: number = maxBy(dataFormatted2019, d => d.param)
+    ?.param
+    ? (maxBy(dataFormatted2019, d => d.param)?.param as number)
+    : 0;
 
+  const worldMinParam: number = minBy(dataFormattedWorldData, d => d.param)
+    ?.param
+    ? (minBy(dataFormattedWorldData, d => d.param)?.param as number) > 0
+      ? 0
+      : (minBy(dataFormattedWorldData, d => d.param)?.param as number)
+    : 0;
+  const worldMaxParam: number = maxBy(dataFormattedWorldData, d => d.param)
+    ?.param
+    ? (maxBy(dataFormattedWorldData, d => d.param)?.param as number)
+    : 0;
+  const minParam = Math.min(
+    countryMinParam,
+    countryMinParam2019,
+    worldMinParam,
+  );
+  const maxParam = Math.max(
+    countryMaxParam,
+    countryMaxParam2019,
+    worldMaxParam,
+  );
   const dataFiltered = dataFormatted.filter(d => d.param !== undefined);
   const minYearFiltered = 2019;
   const maxYearFiltered = 2025;

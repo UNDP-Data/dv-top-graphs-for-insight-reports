@@ -3,7 +3,6 @@ import { Select } from 'antd';
 import { useRef, useState } from 'react';
 import { LineChartGraph } from './LineChartGraph';
 import { BarWithChange } from './BarWithChange';
-import { SlopeGraphPoverty } from './SlopeGraphPoverty';
 import GDP2023 from './data/GDP-2023.json';
 import GDP2019 from './data/GDP-2019.json';
 import CarbonIntensityFromFossilFuel from './data/CarbonIntensityFromFossilFuel.json';
@@ -13,6 +12,7 @@ import Poverty3_65 from './data/Poverty3_65.json';
 import Poverty6_85 from './data/Poverty6_85.json';
 import Poverty14 from './data/Poverty14.json';
 import { DownloadImage } from './DownloadImages';
+import { SlopeGraphPovertySeparated } from './SlopeGraphPovertySeperated';
 
 function App() {
   const graph1 = useRef<HTMLDivElement>(null);
@@ -77,6 +77,16 @@ function App() {
           >
             GDP
           </h5>
+          <p
+            className='undp-typography'
+            style={{
+              fontSize: '1rem',
+              fontFamily:
+                'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+            }}
+          >
+            <span className='bold'>Growth pathway</span>
+          </p>
           <LineChartGraph
             data2023={
               GDP2023[GDP2023.findIndex(d => d.iso3 === selectedCountry)]
@@ -131,9 +141,10 @@ function App() {
                   'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
               }}
             >
-              Percentage of the population under each threshold (PPP$ a day)
+              <span className='bold'>Poverty</span>: Percentage of the
+              population under each threshold (PPP$ a day)
             </p>
-            <SlopeGraphPoverty
+            <SlopeGraphPovertySeparated
               data={[
                 Poverty2_15[
                   Poverty2_15.findIndex(d => d.iso3 === selectedCountry)
@@ -148,12 +159,6 @@ function App() {
               ]}
               svgWidth={325}
               svgHeight={300}
-              colors={[
-                UNDPColorModule.categoricalColors.colors[3],
-                UNDPColorModule.categoricalColors.colors[2],
-                UNDPColorModule.categoricalColors.colors[1],
-                UNDPColorModule.categoricalColors.colors[0],
-              ]}
             />
             <div
               className='margin-top-05 small-font'
@@ -197,7 +202,8 @@ function App() {
                   'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
               }}
             >
-              CO2 emissions intensity of GDP (tCO2 per PPP $1,000)
+              <span className='bold'>Carbon Intensity</span>: CO2 emissions
+              intensity of GDP (tCO2 per PPP $1,000)
             </p>
             <BarWithChange
               data={[
