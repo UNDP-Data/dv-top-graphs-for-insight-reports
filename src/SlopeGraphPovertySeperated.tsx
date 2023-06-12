@@ -126,7 +126,7 @@ export function SlopeGraphPovertySeparated(props: Props) {
           shapeRendering='geometricPrecision'
           style={{
             strokeWidth: '1px',
-            stroke: 'var(--gray-500)',
+            stroke: 'var(--gray-600)',
             fill: 'none',
           }}
         />

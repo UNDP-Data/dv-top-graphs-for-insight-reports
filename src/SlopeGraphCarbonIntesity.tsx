@@ -122,7 +122,7 @@ export function SlopeGraphCarbonIntensity(props: Props) {
           y2={y(0)}
           style={{
             strokeWidth: '1px',
-            stroke: 'var(--gray-500)',
+            stroke: 'var(--gray-600)',
             fill: 'none',
           }}
         />
