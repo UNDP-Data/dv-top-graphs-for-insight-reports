@@ -81,17 +81,19 @@ export function SlopeGraphCarbonIntensity(props: Props) {
       <g transform={`translate(${margin.left},${margin.top})`}>
         {ticks.map((d, i) => (
           <g key={i} transform={`translate(${-margin.left}, ${y(d)})`}>
-            <line
-              key={i}
-              x1={0}
-              y1={0}
-              x2={graphWidth + margin.left}
-              y2={0}
-              strokeWidth={1}
-              fill='none'
-              strokeDasharray='8 8'
-              style={{ stroke: 'var(--gray-400)' }}
-            />
+            {d === 0 ? null : (
+              <line
+                key={i}
+                x1={0}
+                y1={0}
+                x2={graphWidth + margin.left}
+                y2={0}
+                strokeWidth={1}
+                fill='none'
+                strokeDasharray='8 8'
+                style={{ stroke: 'var(--gray-400)' }}
+              />
+            )}
             <text
               x={0}
               y={0}
@@ -110,6 +112,18 @@ export function SlopeGraphCarbonIntensity(props: Props) {
             </text>
           </g>
         ))}
+        <line
+          x1={-30}
+          x2={graphWidth}
+          y1={y(0)}
+          shapeRendering='geometricPrecision'
+          y2={y(0)}
+          style={{
+            strokeWidth: '1px',
+            stroke: 'var(--gray-500)',
+            fill: 'none',
+          }}
+        />
         {[0, 1].map(d => (
           <g
             key={d}
@@ -146,6 +160,7 @@ export function SlopeGraphCarbonIntensity(props: Props) {
                 fontFamily:
                   'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
                 fontSize: '0.825rem',
+                fontWeight: 'bold',
                 textAnchor: 'middle',
               }}
             >

@@ -85,17 +85,19 @@ export function SlopeGraphPovertySeparated(props: Props) {
       <g transform={`translate(${margin.left},${margin.top})`}>
         {ticks.map((d, i) => (
           <g key={i} transform={`translate(${-margin.left}, ${y(d)})`}>
-            <line
-              key={i}
-              x1={0}
-              y1={0}
-              x2={graphWidth + margin.left}
-              y2={0}
-              strokeWidth={1}
-              fill='none'
-              strokeDasharray='8 8'
-              style={{ stroke: 'var(--gray-400)' }}
-            />
+            {d === 0 ? null : (
+              <line
+                key={i}
+                x1={0}
+                y1={0}
+                x2={graphWidth + margin.left}
+                y2={0}
+                strokeWidth={1}
+                fill='none'
+                strokeDasharray='8 8'
+                style={{ stroke: 'var(--gray-400)' }}
+              />
+            )}
             <text
               x={0}
               y={0}
@@ -114,6 +116,18 @@ export function SlopeGraphPovertySeparated(props: Props) {
             </text>
           </g>
         ))}
+        <line
+          x1={-30}
+          x2={graphWidth}
+          y1={y(0)}
+          y2={y(0)}
+          shapeRendering='geometricPrecision'
+          style={{
+            strokeWidth: '1px',
+            stroke: 'var(--gray-500)',
+            fill: 'none',
+          }}
+        />
         {[0, 1, 2, 3].map(d => (
           <g
             key={d}
@@ -149,6 +163,7 @@ export function SlopeGraphPovertySeparated(props: Props) {
                 fill: 'var(--blue-300)',
                 fontFamily:
                   'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                fontWeight: 'bold',
                 fontSize: '0.825rem',
                 textAnchor: 'middle',
               }}
