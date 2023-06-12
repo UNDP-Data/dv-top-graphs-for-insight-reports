@@ -8,7 +8,7 @@ interface Props {
   svgHeight: number;
 }
 
-export function SlopeGraphPovertySeparated(props: Props) {
+export function SlopeGraphCarbonIntensity(props: Props) {
   const { data, svgWidth, svgHeight } = props;
   const margin = {
     top: 50,
@@ -18,20 +18,16 @@ export function SlopeGraphPovertySeparated(props: Props) {
   };
   const graphWidth = svgWidth - margin.left - margin.right;
   const graphHeight = svgHeight - margin.top - margin.bottom;
+  const keys = ['From fossil fuels', 'From fossil fuels &\nland-use change'];
+  const columnWid = graphWidth / 2;
   const params = [
-    data[0]['2023'] * 100,
-    data[0]['2025'] * 100,
-    data[1]['2023'] * 100,
-    data[1]['2025'] * 100,
-    data[2]['2023'] * 100,
-    data[2]['2025'] * 100,
-    data[3]['2023'] * 100,
-    data[3]['2025'] * 100,
+    data[0]['2023'],
+    data[0]['2025'],
+    data[1]['2023'],
+    data[1]['2025'],
   ];
-  const minParam = 0;
+  const minParam = Math.min(...params) < 0 ? Math.min(...params) : 0;
   const maxParam = Math.max(...params);
-  const columnWid = graphWidth / 4;
-  const keys = ['$2.15', '$3.65', '$6.85', '$14'];
   const y = scaleLinear()
     .domain([minParam, maxParam])
     .range([graphHeight, 0])
@@ -110,39 +106,39 @@ export function SlopeGraphPovertySeparated(props: Props) {
                 fontWeight: 'bold',
               }}
             >
-              {d}%
+              {d}
             </text>
           </g>
         ))}
-        {[0, 1, 2, 3].map(d => (
+        {[0, 1].map(d => (
           <g
             key={d}
             transform={`translate(${d * columnWid + columnWid / 2},0)`}
           >
             <line
               x1={-20}
-              y1={y(data[d]['2023'] * 100)}
+              y1={y(data[d]['2023'])}
               x2={20}
-              y2={y(data[d]['2025'] * 100)}
+              y2={y(data[d]['2025'])}
               strokeWidth={1}
               fill='none'
               style={{ stroke: 'var(--gray-500)' }}
             />
             <circle
               cx={-20}
-              cy={y(data[d]['2023'] * 100)}
+              cy={y(data[d]['2023'])}
               r={5}
               style={{ fill: 'var(--blue-300)' }}
             />
             <circle
               cx={20}
-              cy={y(data[d]['2025'] * 100)}
+              cy={y(data[d]['2025'])}
               r={5}
               style={{ fill: 'var(--blue-700)' }}
             />
             <text
               x={-20}
-              y={y(data[d]['2023'] * 100)}
+              y={y(data[d]['2023'])}
               dx={0}
               dy={-10}
               style={{
@@ -153,14 +149,11 @@ export function SlopeGraphPovertySeparated(props: Props) {
                 textAnchor: 'middle',
               }}
             >
-              {(data[d]['2023'] * 100).toFixed(
-                data[d]['2023'] * 100 > 1 ? 0 : 1,
-              )}
-              %
+              {data[d]['2023']}
             </text>
             <text
               x={20}
-              y={y(data[d]['2025'] * 100)}
+              y={y(data[d]['2025'])}
               dx={0}
               dy={-10}
               style={{
@@ -172,27 +165,27 @@ export function SlopeGraphPovertySeparated(props: Props) {
                 textAnchor: 'middle',
               }}
             >
-              {(data[d]['2025'] * 100).toFixed(
-                data[d]['2025'] * 100 > 10 ? 0 : 1,
-              )}
-              %
+              {data[d]['2025']}
             </text>
-            <text
-              x={0}
-              y={graphHeight}
-              dx={0}
-              dy={20}
-              style={{
-                fontFamily:
-                  'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-                fill: 'var(--gray-700)',
-                fontSize: '0.825rem',
-                fontWeight: 'bold',
-                textAnchor: 'middle',
-              }}
-            >
-              {keys[d]}
-            </text>
+            {keys[d].split('\n').map((t, j) => (
+              <text
+                x={0}
+                y={graphHeight}
+                dx={0}
+                dy={20 + 15 * j}
+                key={j}
+                style={{
+                  fontFamily:
+                    'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                  fill: 'var(--gray-700)',
+                  fontSize: '0.825rem',
+                  fontWeight: 'bold',
+                  textAnchor: 'middle',
+                }}
+              >
+                {t}
+              </text>
+            ))}
           </g>
         ))}
       </g>

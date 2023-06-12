@@ -2,7 +2,6 @@ import UNDPColorModule from 'undp-viz-colors';
 import { Select } from 'antd';
 import { useRef, useState } from 'react';
 import { LineChartGraph } from './LineChartGraph';
-import { BarWithChange } from './BarWithChange';
 import GDP2023 from './data/GDP-2023.json';
 import GDP2019 from './data/GDP-2019.json';
 import CarbonIntensityFromFossilFuel from './data/CarbonIntensityFromFossilFuel.json';
@@ -13,6 +12,7 @@ import Poverty6_85 from './data/Poverty6_85.json';
 import Poverty14 from './data/Poverty14.json';
 import { DownloadImage } from './DownloadImages';
 import { SlopeGraphPovertySeparated } from './SlopeGraphPovertySeperated';
+import { SlopeGraphCarbonIntensity } from './SlopeGraphCarbonIntesity';
 
 function App() {
   const graph1 = useRef<HTMLDivElement>(null);
@@ -85,7 +85,7 @@ function App() {
                 'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
             }}
           >
-            <span className='bold'>Growth pathway</span>
+            <span className='bold'>Growth Pathways</span>
           </p>
           <LineChartGraph
             data2023={
@@ -144,22 +144,31 @@ function App() {
               <span className='bold'>Poverty</span>: Percentage of the
               population under each threshold (PPP$ a day)
             </p>
-            <SlopeGraphPovertySeparated
-              data={[
-                Poverty2_15[
-                  Poverty2_15.findIndex(d => d.iso3 === selectedCountry)
-                ],
-                Poverty3_65[
-                  Poverty3_65.findIndex(d => d.iso3 === selectedCountry)
-                ],
-                Poverty6_85[
-                  Poverty6_85.findIndex(d => d.iso3 === selectedCountry)
-                ],
-                Poverty14[Poverty14.findIndex(d => d.iso3 === selectedCountry)],
-              ]}
-              svgWidth={325}
-              svgHeight={300}
-            />
+            {Poverty2_15.findIndex(d => d.iso3 === selectedCountry) !== -1 &&
+            Poverty3_65.findIndex(d => d.iso3 === selectedCountry) !== -1 &&
+            Poverty6_85.findIndex(d => d.iso3 === selectedCountry) !== -1 &&
+            Poverty14.findIndex(d => d.iso3 === selectedCountry) !== -1 ? (
+              <SlopeGraphPovertySeparated
+                data={[
+                  Poverty2_15[
+                    Poverty2_15.findIndex(d => d.iso3 === selectedCountry)
+                  ],
+                  Poverty3_65[
+                    Poverty3_65.findIndex(d => d.iso3 === selectedCountry)
+                  ],
+                  Poverty6_85[
+                    Poverty6_85.findIndex(d => d.iso3 === selectedCountry)
+                  ],
+                  Poverty14[
+                    Poverty14.findIndex(d => d.iso3 === selectedCountry)
+                  ],
+                ]}
+                svgWidth={325}
+                svgHeight={300}
+              />
+            ) : (
+              <p className='undp-typography bold'>Data Not Available</p>
+            )}
             <div
               className='margin-top-05 small-font'
               style={{
@@ -205,22 +214,31 @@ function App() {
               <span className='bold'>Carbon Intensity</span>: CO2 emissions
               intensity of GDP (tCO2 per PPP $1,000)
             </p>
-            <BarWithChange
-              data={[
-                CarbonIntensityFromFossilFuel[
-                  CarbonIntensityFromFossilFuel.findIndex(
-                    d => d.iso3 === selectedCountry,
-                  )
-                ],
-                CarbonIntensityFromFossilFuelAndLandUse[
-                  CarbonIntensityFromFossilFuelAndLandUse.findIndex(
-                    d => d.iso3 === selectedCountry,
-                  )
-                ],
-              ]}
-              svgWidth={325}
-              svgHeight={300}
-            />
+            {CarbonIntensityFromFossilFuel.findIndex(
+              d => d.iso3 === selectedCountry,
+            ) !== -1 &&
+            CarbonIntensityFromFossilFuelAndLandUse.findIndex(
+              d => d.iso3 === selectedCountry,
+            ) !== -1 ? (
+              <SlopeGraphCarbonIntensity
+                data={[
+                  CarbonIntensityFromFossilFuel[
+                    CarbonIntensityFromFossilFuel.findIndex(
+                      d => d.iso3 === selectedCountry,
+                    )
+                  ],
+                  CarbonIntensityFromFossilFuelAndLandUse[
+                    CarbonIntensityFromFossilFuelAndLandUse.findIndex(
+                      d => d.iso3 === selectedCountry,
+                    )
+                  ],
+                ]}
+                svgWidth={325}
+                svgHeight={300}
+              />
+            ) : (
+              <p className='undp-typography bold'>Data Not Available</p>
+            )}
             <div
               className='margin-top-05 small-font'
               style={{
