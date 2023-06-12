@@ -46,38 +46,40 @@ export function SlopeGraphCarbonIntensity(props: Props) {
         height={svgHeight}
         fill={UNDPColorModule.graphBackgroundColor}
       />
-      <circle cx={10} cy={20} r={5} style={{ fill: 'var(--blue-300)' }} />
-      <text
-        x={15}
-        y={20}
-        dx={5}
-        dy={4}
-        style={{
-          fill: 'var(--blue-300)',
-          fontFamily: 'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-          fontSize: '0.825rem',
-          textAnchor: 'start',
-          fontWeight: 'bold',
-        }}
-      >
-        2023
-      </text>
-      <circle cx={90} cy={20} r={5} style={{ fill: 'var(--blue-700)' }} />
-      <text
-        x={95}
-        y={20}
-        dx={5}
-        dy={4}
-        style={{
-          fill: 'var(--blue-700)',
-          fontFamily: 'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-          fontSize: '0.825rem',
-          textAnchor: 'start',
-          fontWeight: 'bold',
-        }}
-      >
-        2025
-      </text>
+      <g transform='translate(-5,-7)'>
+        <circle cx={10} cy={20} r={5} style={{ fill: 'var(--blue-300)' }} />
+        <text
+          x={15}
+          y={20}
+          dx={5}
+          dy={4}
+          style={{
+            fill: 'var(--blue-300)',
+            fontFamily: 'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+            fontSize: '0.825rem',
+            textAnchor: 'start',
+            fontWeight: 'bold',
+          }}
+        >
+          2023
+        </text>
+        <circle cx={90} cy={20} r={5} style={{ fill: 'var(--blue-700)' }} />
+        <text
+          x={95}
+          y={20}
+          dx={5}
+          dy={4}
+          style={{
+            fill: 'var(--blue-700)',
+            fontFamily: 'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+            fontSize: '0.825rem',
+            textAnchor: 'start',
+            fontWeight: 'bold',
+          }}
+        >
+          2025
+        </text>
+      </g>
       <g transform={`translate(${margin.left},${margin.top})`}>
         {ticks.map((d, i) => (
           <g key={i} transform={`translate(${-margin.left}, ${y(d)})`}>
