@@ -153,10 +153,7 @@ export function SlopeGraphPovertySeparated(props: Props) {
                 textAnchor: 'middle',
               }}
             >
-              {(data[d]['2023'] * 100).toFixed(
-                data[d]['2023'] * 100 > 1 ? 0 : 1,
-              )}
-              %
+              {(data[d]['2023'] * 100).toFixed(1)}%
             </text>
             <text
               x={20}
@@ -172,10 +169,7 @@ export function SlopeGraphPovertySeparated(props: Props) {
                 textAnchor: 'middle',
               }}
             >
-              {(data[d]['2025'] * 100).toFixed(
-                data[d]['2025'] * 100 > 10 ? 0 : 1,
-              )}
-              %
+              {(data[d]['2025'] * 100).toFixed(1)}%
             </text>
             <text
               x={0}
