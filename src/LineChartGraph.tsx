@@ -221,6 +221,23 @@ export function LineChartGraph(props: Props) {
             >
               {minYearFiltered}
             </text>
+            {[2020, 2021, 2022, 2023, 2024].map((d, i) => (
+              <text
+                y={graphHeight + 5}
+                key={i}
+                x={x(d)}
+                style={{
+                  fill: 'var(--gray-600)',
+                  fontFamily:
+                    'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                }}
+                textAnchor='middle'
+                fontSize={14}
+                dy={15}
+              >
+                {d}
+              </text>
+            ))}
             <text
               y={graphHeight + 5}
               x={x(maxYearFiltered as number)}
