@@ -14,7 +14,6 @@ import FiscalData from './data/FiscalData.json';
 import { DownloadImage } from './DownloadImages';
 import { SlopeGraphPovertySeparated } from './SlopeGraphPovertySeperated';
 import { SlopeGraphCarbonIntensity } from './SlopeGraphCarbonIntesity';
-import { DotPlot } from './DotPlot';
 import { RadarAndDotPlot } from './RadarAndDotPlot';
 
 function App() {
@@ -22,7 +21,6 @@ function App() {
   const graph2 = useRef<HTMLDivElement>(null);
   const graph3 = useRef<HTMLDivElement>(null);
   const graphCombined = useRef<HTMLDivElement>(null);
-  const FiscalGraph = useRef<HTMLDivElement>(null);
   const FiscalRadarGraph = useRef<HTMLDivElement>(null);
   const WorldGDPData = {
     '2019': 0.028,
@@ -315,64 +313,6 @@ function App() {
           }}
         >
           Download All Graphs
-        </button>
-      </div>
-      <div
-        className='margin-top-13 margin-bottom-13'
-        style={{ maxWidth: '740px', margin: 'auto' }}
-      >
-        <div
-          className='margin-bottom-07'
-          style={{
-            padding: '2rem',
-            backgroundColor: UNDPColorModule.graphBackgroundColor,
-          }}
-          ref={FiscalGraph}
-        >
-          <DotPlot
-            fiscalData={
-              FiscalData[FiscalData.findIndex(d => d.iso === selectedCountry)]
-            }
-            averageData={
-              AverageFiscalData[
-                AverageFiscalData.findIndex(
-                  d =>
-                    d.iso ===
-                    FiscalData[
-                      FiscalData.findIndex(el => el.iso === selectedCountry)
-                    ]['IMF country grouping'],
-                )
-              ]
-            }
-            svgWidth={656}
-            svgHeight={800}
-          />
-          <div
-            className='margin-top-05 small-font'
-            style={{
-              color: 'var(--gray-600)',
-              fontFamily:
-                'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-            }}
-          >
-            {
-              FiscalData[FiscalData.findIndex(d => d.iso === selectedCountry)][
-                'notes/sources'
-              ]
-            }
-          </div>
-        </div>
-        <button
-          className='undp-button tertiary-button'
-          type='button'
-          style={{ color: 'var(--blue-600)', padding: 0 }}
-          onClick={() => {
-            if (FiscalGraph.current) {
-              DownloadImage(FiscalGraph.current, 'Fiscal Chart');
-            }
-          }}
-        >
-          Download Above Graphs
         </button>
       </div>
       <div

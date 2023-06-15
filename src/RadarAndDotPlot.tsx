@@ -223,7 +223,14 @@ export function RadarAndDotPlot(props: Props) {
                       Math.sin((i * 2 * Math.PI) / 3 - Math.PI / 2) <
                     0
                       ? -10
-                      : 20
+                      : 25
+                  }
+                  dx={
+                    i === 0
+                      ? 0
+                      : Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2) < 0
+                      ? 30
+                      : -30
                   }
                 >
                   {d}
@@ -294,7 +301,7 @@ export function RadarAndDotPlot(props: Props) {
                       (xLowFreq(averageData[d]) as number) *
                       Math.sin((i * 2 * Math.PI) / 3 - Math.PI / 2)
                     }
-                    r={7.5}
+                    r={5}
                     style={{ fill: 'var(--dark-red)' }}
                   />
                   <text
@@ -319,16 +326,24 @@ export function RadarAndDotPlot(props: Props) {
                       (xLowFreq(averageData[d]) as number) *
                       Math.sin((i * 2 * Math.PI) / 3 - Math.PI / 2)
                     }
-                    dy={5}
+                    dy={
+                      i === 0
+                        ? averageData[d] > fiscalData[d]
+                          ? 0
+                          : 10
+                        : averageData[d] > fiscalData[d]
+                        ? 10
+                        : 0
+                    }
                     dx={
                       (xLowFreq(averageData[d]) as number) *
                         Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2) >
                       0
-                        ? 10
-                        : -10
+                        ? 7
+                        : -7
                     }
                   >
-                    {averageData[d].toFixed(2)}
+                    {averageData[d].toFixed(1)}
                   </text>
                   <circle
                     cx={
@@ -339,7 +354,7 @@ export function RadarAndDotPlot(props: Props) {
                       (xLowFreq(fiscalData[d]) as number) *
                       Math.sin((i * 2 * Math.PI) / 3 - Math.PI / 2)
                     }
-                    r={7.5}
+                    r={5}
                     style={{ fill: 'var(--blue-700)' }}
                   />
                   <text
@@ -368,12 +383,20 @@ export function RadarAndDotPlot(props: Props) {
                       (xLowFreq(averageData[d]) as number) *
                         Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2) >
                       0
-                        ? 10
-                        : -10
+                        ? 7
+                        : -7
                     }
-                    dy={5}
+                    dy={
+                      i === 0
+                        ? averageData[d] > fiscalData[d]
+                          ? 10
+                          : 0
+                        : averageData[d] > fiscalData[d]
+                        ? 0
+                        : 10
+                    }
                   >
-                    {fiscalData[d].toFixed(2)}
+                    {fiscalData[d].toFixed(1)}
                   </text>
                 </g>
               );
@@ -404,7 +427,7 @@ export function RadarAndDotPlot(props: Props) {
             }}
             fontSize={16}
           >
-            High-Frequency Indicators
+            Financial Indicators
           </text>
           <g transform={`translate(${0 - margin.left - 5},20)`}>
             <circle cx={10} cy={20} r={5} style={{ fill: 'var(--blue-700)' }} />
@@ -470,7 +493,7 @@ export function RadarAndDotPlot(props: Props) {
                 fontWeight: 'bold',
               }}
             >
-              10-year bond yield for US
+              US Treasury bond
             </text>
           </g>
           {highFreqFiltered.map((d, i) => {
@@ -546,7 +569,7 @@ export function RadarAndDotPlot(props: Props) {
                       y={40}
                       dy={-15}
                     >
-                      {USBondYield}
+                      {USBondYield.toFixed(1)}
                     </text>
                   </g>
                 ) : null}
@@ -576,7 +599,7 @@ export function RadarAndDotPlot(props: Props) {
                   y={40}
                   dy={25}
                 >
-                  {averageData[d].toFixed(2)}
+                  {averageData[d].toFixed(1)}
                 </text>
                 {d === 'Credit rating' ? (
                   <text
@@ -634,7 +657,7 @@ export function RadarAndDotPlot(props: Props) {
                   y={40}
                   dy={25}
                 >
-                  {fiscalData[d].toFixed(2)}
+                  {fiscalData[d].toFixed(1)}
                 </text>
                 {d === 'Credit rating' ? (
                   <text
