@@ -51,7 +51,7 @@ export function DotPlot(props: Props) {
   const highFreqKeys = [
     'Total external debt servicing (% of revenue)',
     'Credit rating',
-    'Yield, %',
+    '10-year bond yield (%)',
     'DSA Risk',
   ];
   const lowFreqKeys = [
@@ -70,6 +70,26 @@ export function DotPlot(props: Props) {
     .domain([0, Math.max(...lowFreqDataArrayCombine)])
     .range([0, graphWidth])
     .nice();
+  let pathFiscal = '';
+  let pathAverage = '';
+
+  lowFreqFiltered.forEach((d, i) => {
+    if (i === 0) {
+      pathFiscal += `M ${xLowFreq(fiscalData[d]) as number},${
+        ((graphHeight / 2 - 70) / lowFreqFiltered.length) * i + 110
+      }`;
+      pathAverage += `M ${xLowFreq(averageData[d]) as number},${
+        ((graphHeight / 2 - 70) / lowFreqFiltered.length) * i + 110
+      }`;
+    } else {
+      pathFiscal += ` L ${xLowFreq(fiscalData[d]) as number},${
+        ((graphHeight / 2 - 70) / lowFreqFiltered.length) * i + 110
+      }`;
+      pathAverage += ` L ${xLowFreq(averageData[d]) as number},${
+        ((graphHeight / 2 - 70) / lowFreqFiltered.length) * i + 110
+      }`;
+    }
+  });
   return (
     <svg
       width='656px'
@@ -99,6 +119,26 @@ export function DotPlot(props: Props) {
           >
             Low-Frequency Indicators
           </text>
+          <path
+            fill='none'
+            style={{
+              stroke: 'var(--dark-red)',
+              fill: 'none',
+              strokeWidth: '2px',
+              strokeOpacity: 0,
+            }}
+            d={pathAverage}
+          />
+          <path
+            fill='none'
+            style={{
+              stroke: 'var(--blue-700)',
+              fill: 'none',
+              strokeWidth: '2px',
+              strokeOpacity: 0,
+            }}
+            d={pathFiscal}
+          />
           <g transform={`translate(${0 - margin.left - 5},20)`}>
             <circle cx={10} cy={20} r={5} style={{ fill: 'var(--blue-700)' }} />
             <text
@@ -315,7 +355,7 @@ export function DotPlot(props: Props) {
                 fontWeight: 'bold',
               }}
             >
-              US Bond Yield %
+              10-year bond yield % For US
             </text>
           </g>
           {highFreqFiltered.map((d, i) => {
@@ -367,7 +407,7 @@ export function DotPlot(props: Props) {
                     fill: 'none',
                   }}
                 />
-                {d === 'Yield, %' ? (
+                {d === '10-year bond yield (%)' ? (
                   <g>
                     <circle
                       r={7.5}

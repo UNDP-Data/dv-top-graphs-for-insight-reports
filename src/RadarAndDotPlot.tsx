@@ -51,7 +51,7 @@ export function RadarAndDotPlot(props: Props) {
   const highFreqKeys = [
     'Total external debt servicing (% of revenue)',
     'Credit rating',
-    'Yield, %',
+    '10-year bond yield (%)',
     'DSA Risk',
   ];
   const lowFreqKeys = [
@@ -470,7 +470,7 @@ export function RadarAndDotPlot(props: Props) {
                 fontWeight: 'bold',
               }}
             >
-              US Bond Yield %
+              10-year bond yield for US
             </text>
           </g>
           {highFreqFiltered.map((d, i) => {
@@ -522,7 +522,7 @@ export function RadarAndDotPlot(props: Props) {
                     fill: 'none',
                   }}
                 />
-                {d === 'Yield, %' ? (
+                {d === '10-year bond yield (%)' ? (
                   <g>
                     <circle
                       r={7.5}

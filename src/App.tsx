@@ -42,7 +42,7 @@ function App() {
       'Natural resources rents (% of GDP)': 9.8,
       'Total external debt servicing (% of revenue)': 14.06,
       'Credit rating': 6.5,
-      'Yield, %': 15.7416,
+      '10-year bond yield (%)': 15.7416,
       'DSA Risk': 2.5,
     },
     {
@@ -53,7 +53,7 @@ function App() {
       'Natural resources rents (% of GDP)': 7.6,
       'Total external debt servicing (% of revenue)': 12.26,
       'Credit rating': 9.44,
-      'Yield, %': 9.321433333,
+      '10-year bond yield (%)': 9.321433333,
       'DSA Risk': 2.7,
     },
     {
@@ -64,7 +64,7 @@ function App() {
       'Natural resources rents (% of GDP)': 1,
       'Total external debt servicing (% of revenue)': 5.38,
       'Credit rating': 17.9,
-      'Yield, %': 3.354942857,
+      '10-year bond yield (%)': 3.354942857,
       'DSA Risk': null,
     },
   ];
