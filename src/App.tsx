@@ -38,7 +38,7 @@ function App() {
       iso: 'LIDC',
       'Resource revenue (% of revenue)': 12.5,
       'Revenue (% of GDP)': 14.9,
-      'Government debt (% of GDP)': 46.3,
+      'Government debt (% of GDP)': 48.3,
       'Natural resources rents (% of GDP)': 9.8,
       'Total external debt servicing (% of revenue)': 14.06,
       'Credit rating': 6.5,
