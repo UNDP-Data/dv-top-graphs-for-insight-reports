@@ -36,6 +36,12 @@ const ratings = [
 ];
 
 const DSARisk = ['Low', 'Moderate', 'High', 'In debt distress'];
+const DSARiskColors = [
+  'var(--dark-green)',
+  'var(--dark-yellow)',
+  'var(--dark-red)',
+  'var(--dark-red)',
+];
 
 export function RadarAndDotPlot(props: Props) {
   const { averageData, fiscalData, svgWidth, svgHeight } = props;
@@ -52,7 +58,7 @@ export function RadarAndDotPlot(props: Props) {
     'Total external debt servicing (% of revenue)',
     'Credit rating',
     '10-year bond yield (%)',
-    'DSA Risk',
+    'DSA Rating',
   ];
   const lowFreqKeys = [
     'Revenue (% of GDP)',
@@ -464,53 +470,103 @@ export function RadarAndDotPlot(props: Props) {
             >
               {fiscalData['IMF country grouping']} Average
             </text>
-            <circle
-              cx={0}
-              cy={0}
-              r={5}
-              transform={
-                fiscalData['IMF country grouping'] === 'Advanced Economy'
-                  ? 'translate(300,20)'
-                  : 'translate(240,20)'
-              }
-              style={{ fill: UNDPColorModule.categoricalColors.colors[3] }}
-            />
-            <text
-              x={
-                fiscalData['IMF country grouping'] === 'Advanced Economy'
-                  ? 305
-                  : 245
-              }
-              y={20}
-              dx={5}
-              dy={4}
-              style={{
-                fill: UNDPColorModule.categoricalColors.colors[3],
-                fontFamily:
-                  'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-                fontSize: '0.825rem',
-                textAnchor: 'start',
-                fontWeight: 'bold',
-              }}
-            >
-              US Treasury bond
-            </text>
+            {highFreqFiltered.indexOf('10-year bond yield (%)') !== -1 ? (
+              <>
+                <circle
+                  cx={0}
+                  cy={0}
+                  r={5}
+                  transform={
+                    fiscalData['IMF country grouping'] === 'Advanced Economy'
+                      ? 'translate(300,20)'
+                      : 'translate(240,20)'
+                  }
+                  style={{ fill: UNDPColorModule.categoricalColors.colors[3] }}
+                />
+                <text
+                  x={
+                    fiscalData['IMF country grouping'] === 'Advanced Economy'
+                      ? 305
+                      : 245
+                  }
+                  y={20}
+                  dx={5}
+                  dy={4}
+                  style={{
+                    fill: UNDPColorModule.categoricalColors.colors[3],
+                    fontFamily:
+                      'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                    fontSize: '0.825rem',
+                    textAnchor: 'start',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  US Treasury bond
+                </text>
+              </>
+            ) : null}
           </g>
           {highFreqFiltered.map((d, i) => {
+            if (d === 'DSA Rating') {
+              const no = [0, 1, 2, 3];
+              return (
+                <g transform={`translate(0,${90 * i + 80})`} key={i}>
+                  <text
+                    y={10}
+                    x={0 - margin.left}
+                    style={{
+                      fill: 'var(--gray-700)',
+                      fontFamily:
+                        'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                    }}
+                    fontSize={16}
+                  >
+                    {d}
+                  </text>
+                  {no.map(el => (
+                    <circle
+                      cx={el * 15 - margin.left + 5}
+                      cy={35}
+                      r={5}
+                      key={el}
+                      style={{
+                        fill:
+                          el < fiscalData[d]
+                            ? DSARiskColors[Math.round(fiscalData[d]) - 1]
+                            : 'var(--gray-400)',
+                      }}
+                    />
+                  ))}
+                  <text
+                    style={{
+                      fill: DSARiskColors[Math.round(fiscalData[d]) - 1],
+                      fontFamily:
+                        'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                      fontWeight: 'bold',
+                      fontSize: '0.875rem',
+                      textTransform: 'uppercase',
+                    }}
+                    x={0 - margin.left}
+                    y={40}
+                    dy={20}
+                  >
+                    {DSARisk[Math.round(fiscalData[d]) - 1]}
+                  </text>
+                </g>
+              );
+            }
+            const maxValue =
+              d !== '10-year bond yield (%)'
+                ? fiscalData[d] > averageData[d]
+                  ? fiscalData[d]
+                  : averageData[d]
+                : Math.max(fiscalData[d], averageData[d], 3.8);
             const x = scaleLinear()
-              .domain([
-                0,
-                fiscalData[d] > averageData[d] ? fiscalData[d] : averageData[d],
-              ])
+              .domain([0, maxValue])
               .range([0, graphWidth])
               .nice();
             return (
-              <g
-                transform={`translate(0,${
-                  ((graphHeight / 2 - 70) / highFreqFiltered.length) * i + 70
-                })`}
-                key={i}
-              >
+              <g transform={`translate(0,${90 * i + 80})`} key={i}>
                 <text
                   y={10}
                   x={0 - margin.left}

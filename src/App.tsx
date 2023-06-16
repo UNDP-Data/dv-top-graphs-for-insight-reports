@@ -41,7 +41,7 @@ function App() {
       'Total external debt servicing (% of revenue)': 14.06,
       'Credit rating': 6.5,
       '10-year bond yield (%)': 15.7416,
-      'DSA Risk': 2.5,
+      'DSA Rating': 2.5,
     },
     {
       iso: 'EMMIE',
@@ -52,7 +52,7 @@ function App() {
       'Total external debt servicing (% of revenue)': 12.26,
       'Credit rating': 9.44,
       '10-year bond yield (%)': 9.321433333,
-      'DSA Risk': 2.7,
+      'DSA Rating': 2.7,
     },
     {
       iso: 'Advanced Economy',
@@ -63,7 +63,7 @@ function App() {
       'Total external debt servicing (% of revenue)': 5.38,
       'Credit rating': 17.9,
       '10-year bond yield (%)': 3.354942857,
-      'DSA Risk': null,
+      'DSA Rating': null,
     },
   ];
   const [selectedCountry, setSelectedCountry] = useState('IDN');
