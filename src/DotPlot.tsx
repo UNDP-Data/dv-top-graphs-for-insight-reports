@@ -39,6 +39,7 @@ const DSARisk = ['Low', 'Moderate', 'High', 'In debt distress'];
 
 export function DotPlot(props: Props) {
   const { averageData, fiscalData, svgWidth, svgHeight } = props;
+  console.log(props);
   const margin = {
     top: 20,
     bottom: 10,
@@ -237,7 +238,7 @@ export function DotPlot(props: Props) {
                   y={40}
                   dy={25}
                 >
-                  {averageData[d].toFixed(2)}
+                  {averageData[d]?.toFixed(2)}
                 </text>
                 <circle
                   cx={xLowFreq(fiscalData[d]) as number}
@@ -259,7 +260,7 @@ export function DotPlot(props: Props) {
                   y={40}
                   dy={25}
                 >
-                  {fiscalData[d].toFixed(2)}
+                  {fiscalData[d]?.toFixed(2)}
                 </text>
               </g>
             );
@@ -461,7 +462,7 @@ export function DotPlot(props: Props) {
                   y={40}
                   dy={25}
                 >
-                  {averageData[d].toFixed(2)}
+                  {averageData[d]?.toFixed(2)}
                 </text>
                 {d === 'Credit rating' ? (
                   <text
@@ -519,7 +520,7 @@ export function DotPlot(props: Props) {
                   y={40}
                   dy={25}
                 >
-                  {fiscalData[d].toFixed(2)}
+                  {fiscalData[d]?.toFixed(2)}
                 </text>
                 {d === 'Credit rating' ? (
                   <text

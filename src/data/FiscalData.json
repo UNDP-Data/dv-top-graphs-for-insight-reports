@@ -715,6 +715,45 @@
     "notes/sources": "Notes: External debt covers public and publicly guaranteed debt. The AE average of resource revenue includes 33 countries which reported data for that indicator. The credit rating shows the numerical average of S&P’s, Moodys’, and FITCH’s ratings, expressed in S&P’s scale in brackets. Sources: UNU-WIDER GRD (resource revenue, data from 2021), IMF WEO April 2023 (debt and revenue, forecasts for 2023), debtjustice.org.uk (external debt, data from 2022) S&P, Moodys and FITCH (credit ratings, data from 2023)."
   },
   {
+    "iso": "ERI",
+    "IMF country grouping": "LIDC",
+    "Resource revenue (% of revenue)": null,
+    "Revenue (% of GDP)": 35.7,
+    "Government debt (% of GDP)": 146.3,
+    "Natural resources rents (% of GDP)": null,
+    "Total external debt servicing (% of revenue)": 3.74,
+    "Credit rating": null,
+    "10-year bond yield (%)": null,
+    "DSA Rating": null,
+    "notes/sources": "Notes: External debt covers public and publicly guaranteed debt. Sources:  IMF WEO April 2023 (debt and revenue, data from 2023), IDS (external debt, data from 2023)."
+  },
+  {
+    "iso": "VEN",
+    "IMF country grouping": "EMMIE",
+    "Resource revenue (% of revenue)": null,
+    "Revenue (% of GDP)": 6.0,
+    "Government debt (% of GDP)": 157.8,
+    "Natural resources rents (% of GDP)": null,
+    "Total external debt servicing (% of revenue)": null,
+    "Credit rating": 1,
+    "10-year bond yield (%)": null,
+    "DSA Rating": null,
+    "notes/sources": "Notes: External debt covers public and publicly guaranteed debt. The credit rating shows the numerical average of S&P’s, Moodys’, and FITCH’s ratings, expressed in S&P’s scale in brackets. Sources: IMF WEO April 2023 (debt and revenue, data from 2022), S&P, Moodys and FITCH (credit ratings, data from 2023)."
+  },
+  {
+    "iso": "TWN",
+    "IMF country grouping": "Advanced Economy",
+    "Resource revenue (% of revenue)": null,
+    "Revenue (% of GDP)": 15.9,
+    "Government debt (% of GDP)": 25.0,
+    "Natural resources rents (% of GDP)": null,
+    "Total external debt servicing (% of revenue)": null,
+    "Credit rating": 19,
+    "10-year bond yield (%)": 1.16,
+    "DSA Rating": null,
+    "notes/sources": "Notes: External debt covers public and publicly guaranteed debt. The AE average of 10-year bond yield (%) includes 35 economies that reported values for that indicator. The credit rating shows the numerical average of S&P’s, Moodys’, and FITCH’s ratings, expressed in S&P’s scale in brackets. Sources: IMF WEO April 2023 (debt and revenue, forecasts for 2023), worldgovernmentbonds.com and Haver Analytics (yields as of 8 June 2023), S&P, Moodys and FITCH (credit ratings, data from 2023)."
+  },
+  {
     "iso": "SWZ",
     "IMF country grouping": "EMMIE",
     "Resource revenue (% of revenue)": 0,
@@ -729,7 +768,7 @@
   },
   {
     "iso": "ETH",
-    "IMF country grouping": "EMMIE",
+    "IMF country grouping": "LIDC",
     "Resource revenue (% of revenue)": null,
     "Revenue (% of GDP)": 8.9,
     "Government debt (% of GDP)": 37.6,

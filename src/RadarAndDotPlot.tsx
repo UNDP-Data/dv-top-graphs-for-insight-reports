@@ -183,233 +183,331 @@ export function RadarAndDotPlot(props: Props) {
               {fiscalData['IMF country grouping']} Average
             </text>
           </g>
-          <g
-            transform={`translate(${graphWidth / 2 + 20},${
-              (graphHeight / 2 - 70) / 2 + 40
-            })`}
-          >
-            {lowFreqFiltered.map((d, i) => (
-              <g key={i}>
-                <line
-                  x1={0}
-                  y1={0}
-                  x2={
-                    radarRadius * Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2)
-                  }
-                  y2={
-                    radarRadius * Math.sin((i * 2 * Math.PI) / 3 - Math.PI / 2)
-                  }
-                  r={7.5}
-                  style={{
-                    fill: 'none',
-                    stroke: 'var(--gray-500)',
-                    strokeWidth: 1,
-                  }}
-                />
-                <text
-                  style={{
-                    fill: 'var(--gray-700)',
-                    fontFamily:
-                      'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-                    textAnchor:
-                      i === 0
-                        ? 'middle'
-                        : Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2) < 0
-                        ? 'end'
-                        : 'start',
-                    fontWeight: 'bold',
-                  }}
-                  fontSize={12}
-                  x={
-                    radarRadius * Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2)
-                  }
-                  y={
-                    radarRadius * Math.sin((i * 2 * Math.PI) / 3 - Math.PI / 2)
-                  }
-                  dy={
-                    radarRadius *
-                      Math.sin((i * 2 * Math.PI) / 3 - Math.PI / 2) <
-                    0
-                      ? -10
-                      : 25
-                  }
-                  dx={
-                    i === 0
-                      ? 0
-                      : Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2) < 0
-                      ? 30
-                      : -30
-                  }
-                >
-                  {d}
-                </text>
-              </g>
-            ))}
-            <path
-              fill='none'
-              style={{
-                stroke: 'var(--dark-red)',
-                fill: 'var(--dark-red)',
-                strokeWidth: '2px',
-                strokeOpacity: 0.6,
-                fillOpacity: 0.1,
-              }}
-              d={pathAverage}
-            />
-            <path
-              fill='none'
-              style={{
-                stroke: 'var(--blue-700)',
-                fill: 'var(--blue-700)',
-                strokeWidth: '2px',
-                strokeOpacity: 0.6,
-                fillOpacity: 0.1,
-              }}
-              d={pathFiscal}
-            />
-            {xTicks.map((d, i) => (
-              <g key={i}>
-                <circle
-                  x={0}
-                  y={0}
-                  r={xLowFreq(d)}
-                  style={{
-                    fill: 'none',
-                    stroke: 'var(--gray-400)',
-                    strokeWidth: 1,
-                  }}
-                />
-                <text
-                  style={{
-                    fill: 'var(--gray-500)',
-                    fontFamily:
-                      'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-                    textAnchor: 'middle',
-                    fontWeight: 'bold',
-                  }}
-                  fontSize={14}
-                  x={0}
-                  y={xLowFreq(d)}
-                  dy={4}
-                >
-                  {d} %
-                </text>
-              </g>
-            ))}
-
-            {lowFreqFiltered.map((d, i) => {
-              return (
+          {lowFreqFiltered.length > 2 ? (
+            <g
+              transform={`translate(${graphWidth / 2 + 20},${
+                (graphHeight / 2 - 70) / 2 + 40
+              })`}
+            >
+              {lowFreqFiltered.map((d, i) => (
                 <g key={i}>
-                  <circle
-                    cx={
-                      (xLowFreq(averageData[d]) as number) *
+                  <line
+                    x1={0}
+                    y1={0}
+                    x2={
+                      radarRadius *
                       Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2)
                     }
-                    cy={
-                      (xLowFreq(averageData[d]) as number) *
+                    y2={
+                      radarRadius *
                       Math.sin((i * 2 * Math.PI) / 3 - Math.PI / 2)
                     }
-                    r={5}
-                    style={{ fill: 'var(--dark-red)' }}
+                    r={7.5}
+                    style={{
+                      fill: 'none',
+                      stroke: 'var(--gray-500)',
+                      strokeWidth: 1,
+                    }}
                   />
                   <text
                     style={{
-                      fill: 'var(--dark-red)',
+                      fill: 'var(--gray-700)',
                       fontFamily:
                         'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
                       textAnchor:
-                        (xLowFreq(averageData[d]) as number) *
-                          Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2) >
-                        0
-                          ? 'start'
-                          : 'end',
+                        i === 0
+                          ? 'middle'
+                          : Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2) < 0
+                          ? 'end'
+                          : 'start',
                       fontWeight: 'bold',
                     }}
-                    fontSize={14}
+                    fontSize={12}
                     x={
-                      (xLowFreq(averageData[d]) as number) *
+                      radarRadius *
                       Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2)
                     }
                     y={
-                      (xLowFreq(averageData[d]) as number) *
+                      radarRadius *
                       Math.sin((i * 2 * Math.PI) / 3 - Math.PI / 2)
                     }
                     dy={
-                      i === 0
-                        ? averageData[d] > fiscalData[d]
-                          ? 0
-                          : 10
-                        : averageData[d] > fiscalData[d]
-                        ? 10
-                        : 0
+                      radarRadius *
+                        Math.sin((i * 2 * Math.PI) / 3 - Math.PI / 2) <
+                      0
+                        ? -10
+                        : 25
                     }
                     dx={
-                      (xLowFreq(averageData[d]) as number) *
-                        Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2) >
-                      0
-                        ? 7
-                        : -7
-                    }
-                  >
-                    {averageData[d].toFixed(1)}
-                  </text>
-                  <circle
-                    cx={
-                      (xLowFreq(fiscalData[d]) as number) *
-                      Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2)
-                    }
-                    cy={
-                      (xLowFreq(fiscalData[d]) as number) *
-                      Math.sin((i * 2 * Math.PI) / 3 - Math.PI / 2)
-                    }
-                    r={5}
-                    style={{ fill: 'var(--blue-700)' }}
-                  />
-                  <text
-                    style={{
-                      fill: 'var(--blue-700)',
-                      fontFamily:
-                        'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-                      textAnchor:
-                        (xLowFreq(averageData[d]) as number) *
-                          Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2) >
-                        0
-                          ? 'start'
-                          : 'end',
-                      fontWeight: 'bold',
-                    }}
-                    fontSize={14}
-                    x={
-                      (xLowFreq(fiscalData[d]) as number) *
-                      Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2)
-                    }
-                    y={
-                      (xLowFreq(fiscalData[d]) as number) *
-                      Math.sin((i * 2 * Math.PI) / 3 - Math.PI / 2)
-                    }
-                    dx={
-                      (xLowFreq(averageData[d]) as number) *
-                        Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2) >
-                      0
-                        ? 7
-                        : -7
-                    }
-                    dy={
                       i === 0
-                        ? averageData[d] > fiscalData[d]
-                          ? 10
-                          : 0
-                        : averageData[d] > fiscalData[d]
                         ? 0
-                        : 10
+                        : Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2) < 0
+                        ? 30
+                        : -30
                     }
                   >
-                    {fiscalData[d].toFixed(1)}
+                    {d}
                   </text>
                 </g>
-              );
-            })}
-          </g>
+              ))}
+              <path
+                fill='none'
+                style={{
+                  stroke: 'var(--dark-red)',
+                  fill: 'var(--dark-red)',
+                  strokeWidth: '2px',
+                  strokeOpacity: 0.6,
+                  fillOpacity: 0.1,
+                }}
+                d={pathAverage}
+              />
+              <path
+                fill='none'
+                style={{
+                  stroke: 'var(--blue-700)',
+                  fill: 'var(--blue-700)',
+                  strokeWidth: '2px',
+                  strokeOpacity: 0.6,
+                  fillOpacity: 0.1,
+                }}
+                d={pathFiscal}
+              />
+              {xTicks.map((d, i) => (
+                <g key={i}>
+                  <circle
+                    x={0}
+                    y={0}
+                    r={xLowFreq(d)}
+                    style={{
+                      fill: 'none',
+                      stroke: 'var(--gray-400)',
+                      strokeWidth: 1,
+                    }}
+                  />
+                  <text
+                    style={{
+                      fill: 'var(--gray-500)',
+                      fontFamily:
+                        'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                      textAnchor: 'middle',
+                      fontWeight: 'bold',
+                    }}
+                    fontSize={14}
+                    x={0}
+                    y={xLowFreq(d)}
+                    dy={4}
+                  >
+                    {d} %
+                  </text>
+                </g>
+              ))}
+
+              {lowFreqFiltered.map((d, i) => {
+                return (
+                  <g key={i}>
+                    <circle
+                      cx={
+                        (xLowFreq(averageData[d]) as number) *
+                        Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2)
+                      }
+                      cy={
+                        (xLowFreq(averageData[d]) as number) *
+                        Math.sin((i * 2 * Math.PI) / 3 - Math.PI / 2)
+                      }
+                      r={5}
+                      style={{ fill: 'var(--dark-red)' }}
+                    />
+                    <text
+                      style={{
+                        fill: 'var(--dark-red)',
+                        fontFamily:
+                          'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                        textAnchor:
+                          (xLowFreq(averageData[d]) as number) *
+                            Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2) >
+                          0
+                            ? 'start'
+                            : 'end',
+                        fontWeight: 'bold',
+                      }}
+                      fontSize={14}
+                      x={
+                        (xLowFreq(averageData[d]) as number) *
+                        Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2)
+                      }
+                      y={
+                        (xLowFreq(averageData[d]) as number) *
+                        Math.sin((i * 2 * Math.PI) / 3 - Math.PI / 2)
+                      }
+                      dy={
+                        i === 0
+                          ? averageData[d] > fiscalData[d]
+                            ? 0
+                            : 10
+                          : averageData[d] > fiscalData[d]
+                          ? 10
+                          : 0
+                      }
+                      dx={
+                        (xLowFreq(averageData[d]) as number) *
+                          Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2) >
+                        0
+                          ? 7
+                          : -7
+                      }
+                    >
+                      {averageData[d].toFixed(1)}
+                    </text>
+                    <circle
+                      cx={
+                        (xLowFreq(fiscalData[d]) as number) *
+                        Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2)
+                      }
+                      cy={
+                        (xLowFreq(fiscalData[d]) as number) *
+                        Math.sin((i * 2 * Math.PI) / 3 - Math.PI / 2)
+                      }
+                      r={5}
+                      style={{ fill: 'var(--blue-700)' }}
+                    />
+                    <text
+                      style={{
+                        fill: 'var(--blue-700)',
+                        fontFamily:
+                          'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                        textAnchor:
+                          (xLowFreq(averageData[d]) as number) *
+                            Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2) >
+                          0
+                            ? 'start'
+                            : 'end',
+                        fontWeight: 'bold',
+                      }}
+                      fontSize={14}
+                      x={
+                        (xLowFreq(fiscalData[d]) as number) *
+                        Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2)
+                      }
+                      y={
+                        (xLowFreq(fiscalData[d]) as number) *
+                        Math.sin((i * 2 * Math.PI) / 3 - Math.PI / 2)
+                      }
+                      dx={
+                        (xLowFreq(averageData[d]) as number) *
+                          Math.cos((i * 2 * Math.PI) / 3 - Math.PI / 2) >
+                        0
+                          ? 7
+                          : -7
+                      }
+                      dy={
+                        i === 0
+                          ? averageData[d] > fiscalData[d]
+                            ? 10
+                            : 0
+                          : averageData[d] > fiscalData[d]
+                          ? 0
+                          : 10
+                      }
+                    >
+                      {fiscalData[d].toFixed(1)}
+                    </text>
+                  </g>
+                );
+              })}
+            </g>
+          ) : (
+            <>
+              {lowFreqFiltered.map((d, i) => {
+                return (
+                  <g
+                    transform={`translate(0,${
+                      ((graphHeight / 2 - 70) / lowFreqFiltered.length) * i + 70
+                    })`}
+                    key={i}
+                  >
+                    <text
+                      y={10}
+                      x={0 - margin.left}
+                      style={{
+                        fill: 'var(--gray-700)',
+                        fontFamily:
+                          'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                      }}
+                      fontSize={16}
+                    >
+                      {d}
+                    </text>
+                    <line
+                      x1={0 - margin.left}
+                      x2={svgWidth}
+                      y1={40}
+                      y2={40}
+                      style={{
+                        strokeWidth: '1px',
+                        stroke: 'var(--gray-400)',
+                        fill: 'none',
+                      }}
+                    />
+                    <line
+                      x1={xLowFreq(averageData[d]) as number}
+                      x2={xLowFreq(fiscalData[d]) as number}
+                      y1={40}
+                      y2={40}
+                      style={{
+                        strokeWidth: '1px',
+                        stroke: 'var(--gray-700)',
+                        fill: 'none',
+                      }}
+                    />
+                    <circle
+                      cx={xLowFreq(averageData[d]) as number}
+                      cy={40}
+                      r={7.5}
+                      style={{ fill: 'var(--dark-red)' }}
+                    />
+                    <text
+                      style={{
+                        fill: 'var(--dark-red)',
+                        fontFamily:
+                          'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                        textAnchor:
+                          fiscalData[d] < averageData[d] ? 'start' : 'end',
+                        fontWeight: 'bold',
+                      }}
+                      fontSize={14}
+                      x={xLowFreq(averageData[d]) as number}
+                      y={40}
+                      dy={25}
+                    >
+                      {averageData[d]?.toFixed(2)}
+                    </text>
+                    <circle
+                      cx={xLowFreq(fiscalData[d]) as number}
+                      cy={40}
+                      r={7.5}
+                      style={{ fill: 'var(--blue-700)' }}
+                    />
+                    <text
+                      style={{
+                        fill: 'var(--blue-700)',
+                        fontFamily:
+                          'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                        textAnchor:
+                          fiscalData[d] > averageData[d] ? 'start' : 'end',
+                        fontWeight: 'bold',
+                      }}
+                      fontSize={14}
+                      x={xLowFreq(fiscalData[d]) as number}
+                      y={40}
+                      dy={25}
+                    >
+                      {fiscalData[d]?.toFixed(2)}
+                    </text>
+                  </g>
+                );
+              })}
+            </>
+          )}
         </g>
         <g transform={`translate(0,${graphHeight / 2 + 20})`}>
           <line
