@@ -327,54 +327,70 @@ function App() {
           }}
           ref={FiscalRadarGraph}
         >
-          <RadarAndDotPlot
-            fiscalData={
-              FiscalData[FiscalData.findIndex(d => d.iso === selectedCountry)]
-            }
-            averageData={
-              AverageFiscalData[
-                AverageFiscalData.findIndex(
-                  d =>
-                    d.iso ===
-                    FiscalData[
-                      FiscalData.findIndex(el => el.iso === selectedCountry)
-                    ]['IMF country grouping'],
-                )
-              ]
-            }
-            svgWidth={656}
-            svgHeight={800}
-          />
-          <div
-            className='margin-top-05 small-font'
-            style={{
-              color: 'var(--gray-600)',
-              fontFamily:
-                'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-            }}
-          >
-            <span className='bold'>Notes: </span>
-            {FiscalData[FiscalData.findIndex(d => d.iso === selectedCountry)][
-              'notes/sources'
-            ]
-              .split('Sources: ')[0]
-              .replace('Notes: ', '')}
-          </div>
-          <div
-            className='margin-top-03 small-font'
-            style={{
-              color: 'var(--gray-600)',
-              fontFamily:
-                'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-            }}
-          >
-            <span className='bold'>Sources: </span>
-            {
-              FiscalData[FiscalData.findIndex(d => d.iso === selectedCountry)][
-                'notes/sources'
-              ].split('Sources: ')[1]
-            }
-          </div>
+          {FiscalData.findIndex(d => d.iso === selectedCountry) !== -1 ? (
+            <>
+              <RadarAndDotPlot
+                fiscalData={
+                  FiscalData[
+                    FiscalData.findIndex(d => d.iso === selectedCountry)
+                  ]
+                }
+                averageData={
+                  AverageFiscalData[
+                    AverageFiscalData.findIndex(
+                      d =>
+                        d.iso ===
+                        FiscalData[
+                          FiscalData.findIndex(el => el.iso === selectedCountry)
+                        ]['IMF country grouping'],
+                    )
+                  ]
+                }
+                svgWidth={656}
+                svgHeight={800}
+              />
+              <div
+                className='margin-top-05 small-font'
+                style={{
+                  color: 'var(--gray-600)',
+                  fontFamily:
+                    'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                }}
+              >
+                <span className='bold'>Notes: </span>
+                {FiscalData[
+                  FiscalData.findIndex(d => d.iso === selectedCountry)
+                ]['notes/sources']
+                  .split('Sources: ')[0]
+                  .replace('Notes: ', '')}
+              </div>
+              <div
+                className='margin-top-03 small-font'
+                style={{
+                  color: 'var(--gray-600)',
+                  fontFamily:
+                    'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                }}
+              >
+                <span className='bold'>Sources: </span>
+                {
+                  FiscalData[
+                    FiscalData.findIndex(d => d.iso === selectedCountry)
+                  ]['notes/sources'].split('Sources: ')[1]
+                }
+              </div>
+            </>
+          ) : (
+            <p
+              className='undp-typography bold margin-bottom-00'
+              style={{
+                fontFamily:
+                  'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+              }}
+            >
+              Fiscal Data Not Available
+            </p>
+          )}
         </div>
         <button
           className='undp-button tertiary-button'
