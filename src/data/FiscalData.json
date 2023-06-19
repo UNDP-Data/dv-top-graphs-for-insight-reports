@@ -2444,7 +2444,7 @@
     "notes/sources": "Notes: External debt covers public and publicly guaranteed debt. The LIDC average of resource revenue (% of revenue) only includes the 38 countries that reported data for that indicator, that for 10-year bond yield (%) includes five LIDC enonomies. The credit rating shows the numerical average of S&P’s, Moodys’, and FITCH’s ratings, expressed in S&P’s scale in brackets. Sources: UNU-WIDER GRD (resource revenue, data from 2020), IMF WEO April 2023 (debt and revenue, forecasts for 2023), IDS (external debt, data from 2023), worldgovernmentbonds.com and Haver Analytics (yields as of 8 June 2023), S&P, Moodys and FITCH (credit ratings, data from 2023)."
   },
   {
-    "iso": "WBG",
+    "iso": "PSE",
     "IMF country grouping": "EMMIE",
     "Resource revenue (% of revenue)": null,
     "Revenue (% of GDP)": 27.3,

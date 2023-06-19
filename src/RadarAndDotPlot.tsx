@@ -120,7 +120,9 @@ export function RadarAndDotPlot(props: Props) {
     <svg
       width='656px'
       style={{ alignItems: 'flex-end' }}
-      viewBox={`0 0 ${svgWidth} ${svgHeight}`}
+      viewBox={`0 0 ${svgWidth} ${
+        highFreqFiltered.length === 0 ? 570 : svgHeight
+      }`}
     >
       <rect
         x={0}
@@ -754,6 +756,23 @@ export function RadarAndDotPlot(props: Props) {
               </g>
             );
           })}
+          {highFreqFiltered.length === 0 ? (
+            <g transform='translate(0,80)'>
+              <text
+                y={30}
+                x={0 - margin.left}
+                style={{
+                  fill: 'var(--gray-700)',
+                  fontFamily:
+                    'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                  fontWeight: 'bold',
+                }}
+                fontSize={24}
+              >
+                No Data Available
+              </text>
+            </g>
+          ) : null}
         </g>
       </g>
     </svg>

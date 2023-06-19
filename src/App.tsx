@@ -349,36 +349,46 @@ function App() {
                 svgWidth={656}
                 svgHeight={800}
               />
-              <div
-                className='margin-top-05 small-font'
-                style={{
-                  color: 'var(--gray-600)',
-                  fontFamily:
-                    'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-                }}
-              >
-                <span className='bold'>Notes: </span>
-                {FiscalData[
-                  FiscalData.findIndex(d => d.iso === selectedCountry)
-                ]['notes/sources']
-                  .split('Sources: ')[0]
-                  .replace('Notes: ', '')}
-              </div>
-              <div
-                className='margin-top-03 small-font'
-                style={{
-                  color: 'var(--gray-600)',
-                  fontFamily:
-                    'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-                }}
-              >
-                <span className='bold'>Sources: </span>
-                {
-                  FiscalData[
+              {FiscalData[FiscalData.findIndex(d => d.iso === selectedCountry)][
+                'notes/sources'
+              ]
+                .split('Sources: ')[0]
+                .replace('Notes: ', '').length === 0 ? null : (
+                <div
+                  className='margin-top-05 small-font'
+                  style={{
+                    color: 'var(--gray-600)',
+                    fontFamily:
+                      'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                  }}
+                >
+                  <span className='bold'>Notes: </span>
+                  {FiscalData[
                     FiscalData.findIndex(d => d.iso === selectedCountry)
-                  ]['notes/sources'].split('Sources: ')[1]
-                }
-              </div>
+                  ]['notes/sources']
+                    .split('Sources: ')[0]
+                    .replace('Notes: ', '')}
+                </div>
+              )}
+              {FiscalData[FiscalData.findIndex(d => d.iso === selectedCountry)][
+                'notes/sources'
+              ].split('Sources: ')[1].length === 0 ? null : (
+                <div
+                  className='margin-top-03 small-font'
+                  style={{
+                    color: 'var(--gray-600)',
+                    fontFamily:
+                      'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+                  }}
+                >
+                  <span className='bold'>Sources: </span>
+                  {
+                    FiscalData[
+                      FiscalData.findIndex(d => d.iso === selectedCountry)
+                    ]['notes/sources'].split('Sources: ')[1]
+                  }
+                </div>
+              )}
             </>
           ) : (
             <p
