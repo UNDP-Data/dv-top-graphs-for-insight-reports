@@ -39,7 +39,6 @@ const DSARisk = ['Low', 'Moderate', 'High', 'In debt distress'];
 
 export function DotPlot(props: Props) {
   const { averageData, fiscalData, svgWidth, svgHeight } = props;
-  console.log(props);
   const margin = {
     top: 20,
     bottom: 10,
