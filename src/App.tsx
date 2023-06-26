@@ -183,30 +183,41 @@ function App() {
                 <span className='bold'>Poverty</span>: Percentage of the
                 population under each threshold (PPP$ a day)
               </p>
-              {Poverty2_15.findIndex(d => d.iso3 === selectedCountry) !== -1 &&
-              Poverty3_65.findIndex(d => d.iso3 === selectedCountry) !== -1 &&
-              Poverty6_85.findIndex(d => d.iso3 === selectedCountry) !== -1 &&
-              Poverty14.findIndex(d => d.iso3 === selectedCountry) !== -1 ? (
+              {Poverty2_15.findIndex(d => d.iso3 === selectedCountry) === -1 &&
+              Poverty3_65.findIndex(d => d.iso3 === selectedCountry) === -1 &&
+              Poverty6_85.findIndex(d => d.iso3 === selectedCountry) === -1 &&
+              Poverty14.findIndex(d => d.iso3 === selectedCountry) === -1 ? (
+                <p className='undp-typography bold'>Data Not Available</p>
+              ) : (
                 <SlopeGraphPovertySeparated
                   data={[
-                    Poverty2_15[
-                      Poverty2_15.findIndex(d => d.iso3 === selectedCountry)
-                    ],
-                    Poverty3_65[
-                      Poverty3_65.findIndex(d => d.iso3 === selectedCountry)
-                    ],
-                    Poverty6_85[
-                      Poverty6_85.findIndex(d => d.iso3 === selectedCountry)
-                    ],
-                    Poverty14[
-                      Poverty14.findIndex(d => d.iso3 === selectedCountry)
-                    ],
+                    Poverty2_15.findIndex(d => d.iso3 === selectedCountry) !==
+                    -1
+                      ? Poverty2_15[
+                          Poverty2_15.findIndex(d => d.iso3 === selectedCountry)
+                        ]
+                      : undefined,
+                    Poverty3_65.findIndex(d => d.iso3 === selectedCountry) !==
+                    -1
+                      ? Poverty3_65[
+                          Poverty3_65.findIndex(d => d.iso3 === selectedCountry)
+                        ]
+                      : undefined,
+                    Poverty6_85.findIndex(d => d.iso3 === selectedCountry) !==
+                    -1
+                      ? Poverty6_85[
+                          Poverty6_85.findIndex(d => d.iso3 === selectedCountry)
+                        ]
+                      : undefined,
+                    Poverty14.findIndex(d => d.iso3 === selectedCountry) !== -1
+                      ? Poverty14[
+                          Poverty14.findIndex(d => d.iso3 === selectedCountry)
+                        ]
+                      : undefined,
                   ]}
                   svgWidth={325}
                   svgHeight={300}
                 />
-              ) : (
-                <p className='undp-typography bold'>Data Not Available</p>
               )}
               <div
                 className='margin-top-05 small-font'
@@ -255,28 +266,36 @@ function App() {
               </p>
               {CarbonIntensityFromFossilFuel.findIndex(
                 d => d.iso3 === selectedCountry,
-              ) !== -1 &&
+              ) === -1 &&
               CarbonIntensityFromFossilFuelAndLandUse.findIndex(
                 d => d.iso3 === selectedCountry,
-              ) !== -1 ? (
+              ) === -1 ? (
+                <p className='undp-typography bold'>Data Not Available</p>
+              ) : (
                 <SlopeGraphCarbonIntensity
                   data={[
-                    CarbonIntensityFromFossilFuel[
-                      CarbonIntensityFromFossilFuel.findIndex(
-                        d => d.iso3 === selectedCountry,
-                      )
-                    ],
-                    CarbonIntensityFromFossilFuelAndLandUse[
-                      CarbonIntensityFromFossilFuelAndLandUse.findIndex(
-                        d => d.iso3 === selectedCountry,
-                      )
-                    ],
+                    CarbonIntensityFromFossilFuel.findIndex(
+                      d => d.iso3 === selectedCountry,
+                    ) === -1
+                      ? undefined
+                      : CarbonIntensityFromFossilFuel[
+                          CarbonIntensityFromFossilFuel.findIndex(
+                            d => d.iso3 === selectedCountry,
+                          )
+                        ],
+                    CarbonIntensityFromFossilFuelAndLandUse.findIndex(
+                      d => d.iso3 === selectedCountry,
+                    ) === -1
+                      ? undefined
+                      : CarbonIntensityFromFossilFuelAndLandUse[
+                          CarbonIntensityFromFossilFuelAndLandUse.findIndex(
+                            d => d.iso3 === selectedCountry,
+                          )
+                        ],
                   ]}
                   svgWidth={325}
                   svgHeight={300}
                 />
-              ) : (
-                <p className='undp-typography bold'>Data Not Available</p>
               )}
               <div
                 className='margin-top-05 small-font'
