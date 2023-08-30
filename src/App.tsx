@@ -137,6 +137,7 @@ function App() {
               svgWidth={730}
               svgHeight={480}
               strokeWidth={3}
+              ifTKM={selectedCountry === 'TKM'}
             />
             <div
               className='margin-top-05 small-font'
@@ -146,8 +147,10 @@ function App() {
                   'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
               }}
             >
-              Source: IMF World Economic Outlook (WEO) (April 2023 and October
-              2019).
+              {selectedCountry === 'TKM'
+                ? 'Source: Ministry of Finances'
+                : 'Source: IMF World Economic Outlook (WEO) (April 2023 and October 2019)'}
+              .
             </div>
           </div>
           <div className='flex-div flex-space-between margin-top-05'>

@@ -12,6 +12,7 @@ interface Props {
   svgWidth: number;
   svgHeight: number;
   strokeWidth: number;
+  ifTKM: boolean;
 }
 
 interface DataFormattedType {
@@ -20,8 +21,15 @@ interface DataFormattedType {
 }
 
 export function LineChartGraph(props: Props) {
-  const { data2023, data2019, dataWorld, svgWidth, svgHeight, strokeWidth } =
-    props;
+  const {
+    data2023,
+    data2019,
+    dataWorld,
+    svgWidth,
+    svgHeight,
+    strokeWidth,
+    ifTKM,
+  } = props;
   const margin = {
     top: 75,
     bottom: 35,
@@ -115,7 +123,7 @@ export function LineChartGraph(props: Props) {
     .domain([minYearFiltered as number, maxYearFiltered as number])
     .range([0, graphWidth]);
   const y = scaleLinear()
-    .domain([minParam, maxParam])
+    .domain(ifTKM ? [0, 7] : [minParam, maxParam])
     .range([graphHeight, 0])
     .nice();
 
@@ -160,50 +168,56 @@ export function LineChartGraph(props: Props) {
       >
         GDP Projection (April 2023)
       </text>
-      <rect
-        x={215}
-        y={12}
-        width={20}
-        height={6}
-        style={{ fill: 'var(--blue-200)' }}
-        shapeRendering='geometricPrecision'
-      />
-      <text
-        x={240}
-        y={23}
-        dx={0}
-        dy={-3}
-        style={{
-          fontFamily: 'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-          fill: 'var(--gray-700)',
-          fontWeight: 'bold',
-          fontSize: '0.825rem',
-        }}
-      >
-        GDP Projection (October 2019)
-      </text>
-      <rect
-        x={450}
-        y={12}
-        width={20}
-        height={6}
-        shapeRendering='geometricPrecision'
-        style={{ fill: 'var(--gray-500)' }}
-      />
-      <text
-        x={475}
-        y={23}
-        dx={0}
-        dy={-3}
-        style={{
-          fontFamily: 'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
-          fill: 'var(--gray-700)',
-          fontWeight: 'bold',
-          fontSize: '0.825rem',
-        }}
-      >
-        World GDP Projection (April 2023)
-      </text>
+      {ifTKM ? null : (
+        <>
+          <rect
+            x={215}
+            y={12}
+            width={20}
+            height={6}
+            style={{ fill: 'var(--blue-200)' }}
+            shapeRendering='geometricPrecision'
+          />
+          <text
+            x={240}
+            y={23}
+            dx={0}
+            dy={-3}
+            style={{
+              fontFamily:
+                'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+              fill: 'var(--gray-700)',
+              fontWeight: 'bold',
+              fontSize: '0.825rem',
+            }}
+          >
+            GDP Projection (October 2019)
+          </text>
+          <rect
+            x={450}
+            y={12}
+            width={20}
+            height={6}
+            shapeRendering='geometricPrecision'
+            style={{ fill: 'var(--gray-500)' }}
+          />
+          <text
+            x={475}
+            y={23}
+            dx={0}
+            dy={-3}
+            style={{
+              fontFamily:
+                'ProximaNova, proxima-nova, Helvetica Neue, sans-serif',
+              fill: 'var(--gray-700)',
+              fontWeight: 'bold',
+              fontSize: '0.825rem',
+            }}
+          >
+            World GDP Projection (April 2023)
+          </text>
+        </>
+      )}
       <g transform={`translate(${margin.left},${margin.top})`}>
         <g>
           <g>
@@ -255,45 +269,49 @@ export function LineChartGraph(props: Props) {
           </g>
         </g>
         <g>
-          <path
-            d={lineShape(dataFormattedWorldData as any) as string}
-            fill='none'
-            style={{ stroke: 'var(--gray-500)' }}
-            shapeRendering='geometricPrecision'
-            strokeWidth={strokeWidth}
-          />
-          {dataFormattedWorldData
-            .filter(d => d.param)
-            .map((d, i) => (
-              <g key={i}>
-                <circle
-                  cx={x(d.year)}
-                  cy={y(d.param as number)}
-                  r={4}
-                  style={{ fill: 'var(--gray-500)' }}
-                />
-              </g>
-            ))}
-          <path
-            d={lineShape(dataFormatted2019 as any) as string}
-            fill='none'
-            style={{ stroke: 'var(--blue-200)' }}
-            strokeWidth={strokeWidth}
-            shapeRendering='geometricPrecision'
-            strokeDasharray='8 16'
-          />
-          {dataFormatted2019
-            .filter(d => d.param)
-            .map((d, i) => (
-              <g key={i}>
-                <circle
-                  cx={x(d.year)}
-                  cy={y(d.param as number)}
-                  r={4}
-                  style={{ fill: 'var(--blue-200)' }}
-                />
-              </g>
-            ))}
+          {ifTKM ? null : (
+            <>
+              <path
+                d={lineShape(dataFormattedWorldData as any) as string}
+                fill='none'
+                style={{ stroke: 'var(--gray-500)' }}
+                shapeRendering='geometricPrecision'
+                strokeWidth={strokeWidth}
+              />
+              {dataFormattedWorldData
+                .filter(d => d.param)
+                .map((d, i) => (
+                  <g key={i}>
+                    <circle
+                      cx={x(d.year)}
+                      cy={y(d.param as number)}
+                      r={4}
+                      style={{ fill: 'var(--gray-500)' }}
+                    />
+                  </g>
+                ))}
+              <path
+                d={lineShape(dataFormatted2019 as any) as string}
+                fill='none'
+                style={{ stroke: 'var(--blue-200)' }}
+                strokeWidth={strokeWidth}
+                shapeRendering='geometricPrecision'
+                strokeDasharray='8 16'
+              />
+              {dataFormatted2019
+                .filter(d => d.param)
+                .map((d, i) => (
+                  <g key={i}>
+                    <circle
+                      cx={x(d.year)}
+                      cy={y(d.param as number)}
+                      r={4}
+                      style={{ fill: 'var(--blue-200)' }}
+                    />
+                  </g>
+                ))}
+            </>
+          )}
           <path
             d={lineShape(dataFiltered as any) as string}
             fill='none'
