@@ -148,7 +148,7 @@ function App() {
               }}
             >
               {selectedCountry === 'TKM'
-                ? 'Source: Ministry of Finances'
+                ? 'Source: Ministry of Finance'
                 : 'Source: IMF World Economic Outlook (WEO) (April 2023 and October 2019)'}
               .
             </div>
