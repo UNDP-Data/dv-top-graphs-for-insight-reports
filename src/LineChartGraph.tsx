@@ -168,7 +168,7 @@ export function LineChartGraph(props: Props) {
       >
         {ifTKM
           ? 'GDP projections (National Data)'
-          : 'GDP Projection (April 2023)'}
+          : 'GDP Projection (January 2024)'}
       </text>
       {ifTKM ? null : (
         <>
@@ -216,7 +216,7 @@ export function LineChartGraph(props: Props) {
               fontSize: '0.825rem',
             }}
           >
-            World GDP Projection (April 2023)
+            World GDP Projection (January 2024)
           </text>
         </>
       )}
