@@ -2447,14 +2447,14 @@
     "iso": "UZB",
     "IMF country grouping": "LIDC",
     "Resource revenue (% of revenue)": null,
-    "Revenue (% of GDP)": 27,
+    "Revenue (% of GDP)": 25.17,
     "Government debt (% of GDP)": 33.9,
     "Natural resources rents (% of GDP)": 20.46516083,
-    "Total external debt servicing (% of revenue)": 7.99,
+    "Total external debt servicing (% of revenue)": 9.2,
     "Credit rating": 9,
     "10-year bond yield (%)": null,
     "DSA Rating": 1,
-    "notes/sources": "Notes: External debt covers public and publicly guaranteed debt. The credit rating shows the numerical average of S&P’s, Moodys’, and FITCH’s ratings, expressed in S&P’s scale in brackets. Sources: WDI (natural resources rents, data from 2021), IMF WEO April 2023 (debt and revenue, forecasts for 2023), IDS (external debt, data from 2023), S&P, Moodys and FITCH (credit ratings, data from 2023), IMF/World Bank (DSA Rating as of 31 May 2023)."
+    "notes/sources": "Notes: External debt covers public and publicly guaranteed debt. The credit rating shows the numerical average of S&P’s, Moodys’, and FITCH’s ratings, expressed in S&P’s scale in brackets. Sources: WDI (natural resources rents, data from 2021), IMF WEO Oct 2024 (debt and revenue, forecasts for 2024), IDS (external debt, data from 2023), IMF/World Bank (DSA Rating as of 31 May 2023)."
   },
   {
     "iso": "VUT",
