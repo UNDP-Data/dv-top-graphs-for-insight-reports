@@ -67,7 +67,9 @@ export function RadarAndDotPlot(props: Props) {
     'Natural resources rents (% of GDP)',
   ];
   const highFreqFiltered = highFreqKeys.filter(d => fiscalData[d] !== null);
-  const lowFreqFiltered = lowFreqKeys.filter(d => fiscalData[d] !== null);
+  const lowFreqFiltered = lowFreqKeys
+    .filter(d => fiscalData[d] !== null)
+    .filter((_d, i) => i < 3);
   const USBondYield = 3.753;
   const lowFreqDataArray = lowFreqKeys.map(d => fiscalData[d]);
   const lowFreqAvgDataArray = lowFreqKeys.map(d => averageData[d]);
