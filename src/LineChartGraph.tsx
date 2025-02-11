@@ -243,7 +243,7 @@ export function LineChartGraph(props: Props) {
             >
               {minYearFiltered}
             </text>
-            {[2020, 2021, 2022, 2023, 2024].map((d, i) => (
+            {[2020, 2021, 2022, 2023, 2024, 2025, 2026].map((d, i) => (
               <text
                 y={graphHeight + 5}
                 key={i}
