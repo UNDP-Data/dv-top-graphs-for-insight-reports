@@ -26,10 +26,10 @@ export function SlopeGraphCarbonIntensity(props: Props) {
     graphWidth / data.filter((d: any) => d !== undefined).length;
   const dataFiltered = data.filter((d: any) => d !== undefined);
   const params = [
-    data[0] ? data[0]['2023'] : undefined,
     data[0] ? data[0]['2025'] : undefined,
-    data[1] ? data[1]['2023'] : undefined,
+    data[0] ? data[0]['2027'] : undefined,
     data[1] ? data[1]['2025'] : undefined,
+    data[1] ? data[1]['2027'] : undefined,
   ].filter(d => d !== undefined);
   const minParam = Math.min(...params) < 0 ? Math.min(...params) : 0;
   const maxParam = Math.max(...params);
@@ -66,7 +66,7 @@ export function SlopeGraphCarbonIntensity(props: Props) {
             fontWeight: 'bold',
           }}
         >
-          2023
+          2025
         </text>
         <circle cx={90} cy={20} r={5} style={{ fill: 'var(--blue-700)' }} />
         <text
@@ -82,7 +82,7 @@ export function SlopeGraphCarbonIntensity(props: Props) {
             fontWeight: 'bold',
           }}
         >
-          2025
+          2027
         </text>
       </g>
       <g transform={`translate(${margin.left},${margin.top})`}>
@@ -137,28 +137,28 @@ export function SlopeGraphCarbonIntensity(props: Props) {
               <g transform={`translate(${i * columnWid + columnWid / 2},0)`}>
                 <line
                   x1={-20}
-                  y1={y(dataFiltered[i]['2023'])}
+                  y1={y(dataFiltered[i]['2025'])}
                   x2={20}
-                  y2={y(dataFiltered[i]['2025'])}
+                  y2={y(dataFiltered[i]['2027'])}
                   strokeWidth={1}
                   fill='none'
                   style={{ stroke: 'var(--gray-500)' }}
                 />
                 <circle
                   cx={-20}
-                  cy={y(dataFiltered[i]['2023'])}
+                  cy={y(dataFiltered[i]['2025'])}
                   r={5}
                   style={{ fill: 'var(--blue-300)' }}
                 />
                 <circle
                   cx={20}
-                  cy={y(dataFiltered[i]['2025'])}
+                  cy={y(dataFiltered[i]['2027'])}
                   r={5}
                   style={{ fill: 'var(--blue-700)' }}
                 />
                 <text
                   x={-20}
-                  y={y(dataFiltered[i]['2023'])}
+                  y={y(dataFiltered[i]['2025'])}
                   dx={0}
                   dy={-10}
                   style={{
@@ -170,11 +170,11 @@ export function SlopeGraphCarbonIntensity(props: Props) {
                     textAnchor: 'middle',
                   }}
                 >
-                  {dataFiltered[i]['2023']}
+                  {dataFiltered[i]['2025']}
                 </text>
                 <text
                   x={20}
-                  y={y(dataFiltered[i]['2025'])}
+                  y={y(dataFiltered[i]['2027'])}
                   dx={0}
                   dy={-10}
                   style={{
@@ -186,7 +186,7 @@ export function SlopeGraphCarbonIntensity(props: Props) {
                     textAnchor: 'middle',
                   }}
                 >
-                  {dataFiltered[i]['2025']}
+                  {dataFiltered[i]['2027']}
                 </text>
                 {d?.split('\n').map((t, j) => (
                   <text

@@ -20,14 +20,14 @@ export function SlopeGraphPovertySeparated(props: Props) {
   const graphHeight = svgHeight - margin.top - margin.bottom;
   const dataFiltered = data.filter((d: any) => d !== undefined);
   const params = [
-    data[0] ? data[0]['2023'] * 100 : undefined,
     data[0] ? data[0]['2025'] * 100 : undefined,
-    data[1] ? data[1]['2023'] * 100 : undefined,
+    data[0] ? data[0]['2027'] * 100 : undefined,
     data[1] ? data[1]['2025'] * 100 : undefined,
-    data[2] ? data[2]['2023'] * 100 : undefined,
+    data[1] ? data[1]['2027'] * 100 : undefined,
     data[2] ? data[2]['2025'] * 100 : undefined,
-    data[3] ? data[3]['2023'] * 100 : undefined,
+    data[2] ? data[2]['2027'] * 100 : undefined,
     data[3] ? data[3]['2025'] * 100 : undefined,
+    data[3] ? data[3]['2027'] * 100 : undefined,
   ].filter(d => d !== undefined);
   const minParam = 0;
   const maxParam = Math.max(...(params as number[]));
@@ -72,7 +72,7 @@ export function SlopeGraphPovertySeparated(props: Props) {
             fontWeight: 'bold',
           }}
         >
-          2023
+          2025
         </text>
         <circle cx={90} cy={20} r={5} style={{ fill: 'var(--blue-700)' }} />
         <text
@@ -88,7 +88,7 @@ export function SlopeGraphPovertySeparated(props: Props) {
             fontWeight: 'bold',
           }}
         >
-          2025
+          2027
         </text>
       </g>
       <g transform={`translate(${margin.left},${margin.top})`}>
@@ -143,28 +143,28 @@ export function SlopeGraphPovertySeparated(props: Props) {
               <g transform={`translate(${i * columnWid + columnWid / 2},0)`}>
                 <line
                   x1={-20}
-                  y1={y(dataFiltered[i]['2023'] * 100)}
+                  y1={y(dataFiltered[i]['2025'] * 100)}
                   x2={20}
-                  y2={y(dataFiltered[i]['2025'] * 100)}
+                  y2={y(dataFiltered[i]['2027'] * 100)}
                   strokeWidth={1}
                   fill='none'
                   style={{ stroke: 'var(--gray-500)' }}
                 />
                 <circle
                   cx={-20}
-                  cy={y(dataFiltered[i]['2023'] * 100)}
+                  cy={y(dataFiltered[i]['2025'] * 100)}
                   r={5}
                   style={{ fill: 'var(--blue-300)' }}
                 />
                 <circle
                   cx={20}
-                  cy={y(dataFiltered[i]['2025'] * 100)}
+                  cy={y(dataFiltered[i]['2027'] * 100)}
                   r={5}
                   style={{ fill: 'var(--blue-700)' }}
                 />
                 <text
                   x={-20}
-                  y={y(dataFiltered[i]['2023'] * 100)}
+                  y={y(dataFiltered[i]['2025'] * 100)}
                   dx={0}
                   dy={-10}
                   style={{
@@ -176,11 +176,11 @@ export function SlopeGraphPovertySeparated(props: Props) {
                     textAnchor: 'middle',
                   }}
                 >
-                  {(dataFiltered[i]['2023'] * 100).toFixed(1)}%
+                  {(dataFiltered[i]['2025'] * 100).toFixed(1)}%
                 </text>
                 <text
                   x={20}
-                  y={y(dataFiltered[i]['2025'] * 100)}
+                  y={y(dataFiltered[i]['2027'] * 100)}
                   dx={0}
                   dy={-10}
                   style={{
@@ -192,7 +192,7 @@ export function SlopeGraphPovertySeparated(props: Props) {
                     textAnchor: 'middle',
                   }}
                 >
-                  {(dataFiltered[i]['2025'] * 100).toFixed(1)}%
+                  {(dataFiltered[i]['2027'] * 100).toFixed(1)}%
                 </text>
                 <text
                   x={0}
