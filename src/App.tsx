@@ -32,7 +32,6 @@ function App() {
     '2025': 0.032,
     '2026': 0.033,
     '2027': 0.031,
-  
   };
   const AverageFiscalData = [
     {
