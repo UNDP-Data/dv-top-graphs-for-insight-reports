@@ -123,7 +123,7 @@ export function LineChartGraph(props: Props) {
   );
   const dataFiltered = dataFormatted.filter(d => d.param !== undefined);
   const minYearFiltered = 2019;
-  const maxYearFiltered = 2025;
+  const maxYearFiltered = 2027;
 
   const x = scaleLinear()
     .domain([minYearFiltered as number, maxYearFiltered as number])
