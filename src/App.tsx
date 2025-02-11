@@ -23,13 +23,16 @@ function App() {
   const graphCombined = useRef<HTMLDivElement>(null);
   const FiscalRadarGraph = useRef<HTMLDivElement>(null);
   const WorldGDPData = {
-    '2019': 0.028,
-    '2020': -0.029,
-    '2021': 0.062,
-    '2022': 0.035,
-    '2023': 0.031,
-    '2024': 0.031,
+    '2019': 0.029,
+    '2020': -0.027,
+    '2021': 0.066,
+    '2022': 0.036,
+    '2023': 0.033,
+    '2024': 0.032,
     '2025': 0.032,
+    '2026': 0.033,
+    '2027': 0.031,
+  
   };
   const AverageFiscalData = [
     {
