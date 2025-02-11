@@ -47,6 +47,8 @@ export function LineChartGraph(props: Props) {
     '2023',
     '2024',
     '2025',
+    '2026',
+    '2027',
   ].map(d => ({
     year: parseInt(d, 10),
     param: data2023[d] === '' ? undefined : data2023[d] * 100,
@@ -60,6 +62,8 @@ export function LineChartGraph(props: Props) {
     '2023',
     '2024',
     '2025',
+    '2026',
+    '2027',
   ].map(d => ({
     year: parseInt(d, 10),
     param: data2019[d] === '' ? undefined : data2019[d] * 100,
@@ -72,6 +76,8 @@ export function LineChartGraph(props: Props) {
     '2023',
     '2024',
     '2025',
+    '2026',
+    '2027',
   ].map(d => ({
     year: parseInt(d, 10),
     param: dataWorld[d] === '' ? undefined : dataWorld[d] * 100,
@@ -168,7 +174,7 @@ export function LineChartGraph(props: Props) {
       >
         {ifTKM
           ? 'GDP projections (National Data)'
-          : 'GDP Projection (January 2024)'}
+          : 'GDP Projection (October 2024)'}
       </text>
       {ifTKM ? null : (
         <>
@@ -216,7 +222,7 @@ export function LineChartGraph(props: Props) {
               fontSize: '0.825rem',
             }}
           >
-            World GDP Projection (January 2024)
+            World GDP Projection (October 2024)
           </text>
         </>
       )}
