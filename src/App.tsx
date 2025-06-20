@@ -311,8 +311,7 @@ function App() {
                 }}
               >
                 Source: Projections based on GDP data from the IMF WEO Database
-                (April 2025), and on CO2 emissions from the Global Carbon
-                Budget 2024 and EDGAR (JRC and IEA).
+                (April 2025), and on CO2 emissions from the Global Carbon Budget 2024 and EDGAR (JRC and IEA).
               </div>
             </div>
           </div>
