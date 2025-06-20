@@ -26,12 +26,12 @@ function App() {
     '2019': 0.029,
     '2020': -0.027,
     '2021': 0.066,
-    '2022': 0.036,
-    '2023': 0.033,
-    '2024': 0.032,
-    '2025': 0.032,
-    '2026': 0.033,
-    '2027': 0.031,
+    '2022': 0.037,
+    '2023': 0.035,
+    '2024': 0.033,
+    '2025': 0.028,
+    '2026': 0.030,
+    '2027': 0.032,
   };
   const AverageFiscalData = [
     {
@@ -151,7 +151,7 @@ function App() {
             >
               {selectedCountry === 'TKM'
                 ? 'Source: Ministry of Finance'
-                : 'Source: IMF World Economic Outlook (WEO) (October 2024 and October 2019)'}
+                : 'Source: IMF World Economic Outlook (WEO) (April 2025 and October 2019)'}
               .
             </div>
           </div>
@@ -311,7 +311,7 @@ function App() {
                 }}
               >
                 Source: Projections based on GDP data from the IMF WEO Database
-                (October 2024), and on CO2 emissions from the Global Carbon
+                (April 2025), and on CO2 emissions from the Global Carbon
                 Budget 2024 and EDGAR (JRC and IEA).
               </div>
             </div>
